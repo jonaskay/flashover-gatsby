@@ -19,20 +19,22 @@ const PageCard: React.FC<PageCardProps> = ({ data, footer }) => {
 
   return (
     <CardWrapper to={route}>
-      <div className="relative h-40">
-        <img
-          className="absolute top-0 left-0 w-full h-full object-cover"
-          src={image}
-        />
+      <div className="flex flex-col sm:flex-row md:flex-col h-full">
+        <div className="relative flex-none w-full sm:w-64 md:w-full h-40 sm:h-full md:h-40">
+          <img
+            className="absolute top-0 left-0 w-full h-full object-cover"
+            src={image}
+          />
+        </div>
+        <CardBody
+          align="left"
+          justify="between"
+          header={<CardHeader title={title} />}
+          footer={footer}
+        >
+          {description}
+        </CardBody>
       </div>
-      <CardBody
-        align="left"
-        justify="end"
-        header={<CardHeader title={title} />}
-        footer={footer}
-      >
-        {description}
-      </CardBody>
     </CardWrapper>
   )
 }

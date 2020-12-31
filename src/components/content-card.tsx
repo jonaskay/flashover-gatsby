@@ -24,9 +24,9 @@ const ContentCard: React.FC<ContentCardProps> = ({ data, latest, size }) => {
 
   return (
     <CardWrapper size={size || "base"} to={route}>
-      <div className="flex h-full">
-        {image && (
-          <div className="relative flex-grow">
+      <div className="flex flex-col sm:flex-row h-full">
+        {size === "large" && (
+          <div className="relative flex-none w-full sm:w-64 h-40 sm:h-full">
             <img
               className="absolute top-0 left-0 w-full h-full object-cover"
               src={image}

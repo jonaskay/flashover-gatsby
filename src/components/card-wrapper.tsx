@@ -12,7 +12,7 @@ const CardWrapper: React.FC<CardWrapperProps> = ({ children, size, to }) => {
   const shadow = to
     ? "shadow hover:shadow-md focus:shadow-md transition-shadow"
     : "shadow"
-  const className = `relative col-span-${columnSpan} ${shadow}`
+  const className = `relative col-span-1 md:col-span-${columnSpan} ${shadow}`
 
   return to ? (
     <Link className={className} to={to}>

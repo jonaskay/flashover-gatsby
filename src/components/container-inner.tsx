@@ -8,6 +8,10 @@ type ContainerInnerProps = {
 const ContainerInner: React.FC<ContainerInnerProps> = ({
   children,
   className,
-}) => <div className={`p-8${className ? ` ${className}` : ""}`}>{children}</div>
+}) => (
+  <div className={`p-4 sm:p-8${className ? ` ${className}` : ""}`}>
+    {children}
+  </div>
+)
 
 export default ContainerInner

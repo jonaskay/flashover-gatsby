@@ -17,11 +17,11 @@ const CTACard: React.FC = () => (
       <div className="mb-4">Join the newsletter</div>
       <form className="text-base">
         <input
-          className="w-56 px-2 py-1 border border-r-0 border-indigo-200 shadow-sm text-gray-700"
+          className="block sm:inline-block w-full sm:w-56 mb-2 sm:mb-0 px-2 py-1 border sm:border-r-0 border-indigo-200 shadow-sm text-gray-700"
           placeholder="Email"
         />
         <input
-          className="px-2 py-1 bg-yellow-300 border border-l-0 border-indigo-200 shadow-sm cursor-pointer"
+          className="block sm:inline-block w-full sm:w-auto px-2 py-1 bg-yellow-300 border sm:border-l-0 border-yellow-400 sm:border-indigo-200 shadow-sm cursor-pointer"
           type="submit"
           value="Join"
         />

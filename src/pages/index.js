@@ -11,7 +11,7 @@ import CardCTA from "../components/card-cta"
 const IndexPage = () => (
   <Layout>
     <SEO title="Home" />
-    <ContainerInner className="max-w-3xl mx-auto grid gap-6 grid-cols-2">
+    <ContainerInner className="max-w-3xl mx-auto grid gap-6 grid-cols-1 md:grid-cols-2">
       <ContentCard
         data={{
           image: "https://placedog.net/640/640/",
@@ -27,7 +27,7 @@ const IndexPage = () => (
         data={{
           description:
             "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-          image: "https://placedog.net/640/640/",
+          image: "https://placedog.net/520/520/",
           route: "/",
           title: "Lorem ipsum dolor sit amet",
         }}

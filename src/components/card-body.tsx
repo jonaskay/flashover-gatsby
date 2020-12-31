@@ -33,7 +33,7 @@ const CardBody: React.FC<CardBodyProps> = ({
 
   return (
     <div
-      className={`${backgroundColor} border ${borderColor} flex-grow flex flex-col justify-${justify} max-w-sm p-8 text-${align} z-10`}
+      className={`${backgroundColor} border ${borderColor} flex flex-col justify-${justify} p-4 sm:p-8 text-${align} z-10`}
     >
       <div>
         {header && header}
