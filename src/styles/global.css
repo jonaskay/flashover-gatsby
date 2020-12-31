@@ -1,3 +1,18 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .card-heading {
+    @apply mb-4 text-xl font-semibold;
+    position: relative;
+  }
+
+  a .card-heading {
+    @apply text-indigo-600 transition-colors;
+  }
+
+  a:hover .card-heading, a:focus .card-heading {
+    @apply text-black;
+  }
+}
