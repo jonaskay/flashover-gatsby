@@ -5,7 +5,7 @@ type CardHeadingProps = {
 }
 
 const CardHeading: React.FC<CardHeadingProps> = ({ children }) => (
-  <h3 className={"card-heading"}>{children}</h3>
+  <h3 className="card-heading">{children}</h3>
 )
 
 export default CardHeading

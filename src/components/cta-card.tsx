@@ -5,11 +5,10 @@ import CardBody from "./card-body"
 import CardHeading from "./card-heading"
 
 const CTACard: React.FC = () => (
-  <CardWrapper>
+  <CardWrapper theme="primary">
     <CardBody
       align="center"
       justify="center"
-      theme="primary"
       header={<CardHeading>Subscribe to updates</CardHeading>}
     >
       <div className="mb-2">Subscribe by RSS</div>
@@ -21,7 +20,7 @@ const CTACard: React.FC = () => (
           placeholder="Email"
         />
         <input
-          className="block sm:inline-block w-full sm:w-auto px-2 py-1 bg-yellow-300 border sm:border-l-0 border-yellow-400 sm:border-indigo-200 shadow-sm cursor-pointer"
+          className="block sm:inline-block w-full sm:w-auto px-2 py-1 bg-yellow-300 border border-yellow-400 sm:border-indigo-200 shadow-sm cursor-pointer"
           type="submit"
           value="Join"
         />

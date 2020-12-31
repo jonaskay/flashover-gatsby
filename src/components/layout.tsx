@@ -8,14 +8,14 @@ type LayoutProps = {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => (
-  <div className="bg-gray-100">
+  <>
     <Header
       title="Flashover"
       subtitle="Blog posts about the technical and non-technical work in the software industry"
     />
-    <main className="container mx-auto -mt-36">{children}</main>
+    <main className="container mx-auto -mt-24 sm:-mt-36">{children}</main>
     <Footer />
-  </div>
+  </>
 )
 
 export default Layout

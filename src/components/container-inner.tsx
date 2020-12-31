@@ -9,7 +9,9 @@ const ContainerInner: React.FC<ContainerInnerProps> = ({
   children,
   className,
 }) => (
-  <div className={`p-4 sm:p-8${className ? ` ${className}` : ""}`}>
+  <div
+    className={`my-8 sm:my-16 px-4 sm:px-8${className ? ` ${className}` : ""}`}
+  >
     {children}
   </div>
 )

@@ -1,10 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
   .card-heading {
-    @apply mb-4 text-xl font-semibold;
+    @apply mb-4 text-2xl font-semibold;
     position: relative;
   }
 

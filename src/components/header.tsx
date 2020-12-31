@@ -7,12 +7,12 @@ type HeaderProps = {
 }
 
 const Header: React.FC<HeaderProps> = ({ title, subtitle }) => (
-  <header className="bg-white border-b pb-36">
+  <header className="bg-white border-b pt-4 pb-16 sm:pb-24">
     <ContainerInner className="text-center">
       <h1 className="mb-3 text-5xl sm:text-7xl text-indigo-600 font-semibold">
         {title}
       </h1>
-      <div className="max-w-sm mx-auto sm:text-lg">{subtitle}</div>
+      <div className="max-w-sm mx-auto text-xl">{subtitle}</div>
     </ContainerInner>
   </header>
 )
