@@ -18,7 +18,7 @@ const THEMES = {
 
 type CardProps = {
   children: React.ReactNode
-  size?: "large" | "base"
+  columns?: number
   theme?: "primary" | "secondary"
   to?: string
 }
@@ -29,8 +29,8 @@ type CardComponent = React.FC<CardProps> & {
   Heading: React.FC<CardHeadingProps>
 }
 
-const Card: CardComponent = ({ children, size, theme, to }) => {
-  const columnSpan = size === "large" ? 2 : 1
+const Card: CardComponent = ({ children, columns, theme, to }) => {
+  const columnSpan = columns || 1
   const backgroundColor = theme ? THEMES[theme].backgroundColor : "bg-white"
   const borderColor = theme ? THEMES[theme].borderColor : "border-gray-200"
   const shadow = to

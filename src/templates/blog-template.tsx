@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, PageProps, Link } from "gatsby"
 
 import Layout from "../components/layout"
+import SEO from "../components/seo"
 import Article from "../components/article"
 import PostHeader from "../components/post-header"
 import PostBody from "../components/post-body"
@@ -15,6 +16,7 @@ type DataProps = {
     }
     frontmatter: {
       date: string
+      description: string
       title: string
     }
   }
@@ -25,12 +27,13 @@ const BlogTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
     mdx: {
       body,
       fields: { route },
-      frontmatter: { title, date },
+      frontmatter: { title, description, date },
     },
   } = data
 
   return (
     <Layout>
+      <SEO title={title} description={description} />
       <Article>
         <PostHeader date={date} route={route} title={title} />
         <PostBody>{body}</PostBody>
@@ -50,8 +53,9 @@ export const query = graphql`
         route
       }
       frontmatter {
-        title
         date(formatString: "MMM DD, YYYY")
+        description
+        title
       }
     }
   }

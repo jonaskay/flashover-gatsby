@@ -12,12 +12,8 @@ import BlogPostCard from "../components/blog-post-card"
 import Meta from "../components/meta/meta"
 import SectionHeading from "../components/section-heading"
 import CTASection from "../components/cta-section"
-
-const blogPostCardData = post => ({
-  description: post.frontmatter.description,
-  route: post.fields.route,
-  title: post.frontmatter.title,
-})
+import SEO from "../components/seo"
+import { description } from "core-js/fn/symbol/match"
 
 type DataProps = {
   post: {
@@ -27,6 +23,7 @@ type DataProps = {
     }
     frontmatter: {
       date: string
+      description: string
       title: string
     }
   }
@@ -35,6 +32,7 @@ type DataProps = {
       route: string
     }
     frontmatter: {
+      date: string
       description: string
       title: string
     }
@@ -44,6 +42,7 @@ type DataProps = {
       route: string
     }
     frontmatter: {
+      date: string
       description: string
       title: string
     }
@@ -55,7 +54,7 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
     post: {
       body,
       fields: { route },
-      frontmatter: { title, date },
+      frontmatter: { title, description, date },
     },
     next,
     previous,
@@ -65,11 +64,12 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <Layout>
+      <SEO title={title} description={description} />
       <Article>
         <PostHeader
           breadcrumbs={[
             { text: "Flashover", to: "/" },
-            { text: "Weekly posts", to: "/weekly" },
+            { text: "Weekly posts", to: "/archive" },
           ]}
           date={date}
           route={route}
@@ -83,7 +83,7 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
           <div className={`grid gap-6 grid-cols-1 sm:grid-cols-${columns}`}>
             {previous && (
               <BlogPostCard
-                data={blogPostCardData(previous)}
+                data={previous}
                 meta={
                   <Meta>
                     <Meta.Icon>
@@ -96,7 +96,7 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
             )}
             {next && (
               <BlogPostCard
-                data={blogPostCardData(next)}
+                data={next}
                 meta={
                   <Meta>
                     <Meta.Text>Next post</Meta.Text>
@@ -125,8 +125,9 @@ export const query = graphql`
         route
       }
       frontmatter {
-        title
         date(formatString: "MMM DD, YYYY")
+        description
+        title
       }
     }
 
@@ -135,8 +136,9 @@ export const query = graphql`
         route
       }
       frontmatter {
-        title
+        date(formatString: "MMM DD, YYYY")
         description
+        title
       }
     }
 
@@ -145,8 +147,9 @@ export const query = graphql`
         route
       }
       frontmatter {
-        title
+        date(formatString: "MMM DD, YYYY")
         description
+        title
       }
     }
   }

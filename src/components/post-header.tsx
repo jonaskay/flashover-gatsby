@@ -16,7 +16,7 @@ const PostHeader: React.FC<PostHeaderProps> = ({
   title,
   route,
 }) => (
-  <header className="bg-gray-100">
+  <header className="border-t bg-gray-100">
     <Container className="max-w-2xl py-8">
       {breadcrumbs && (
         <nav className="mb-2 text-center text-lg">

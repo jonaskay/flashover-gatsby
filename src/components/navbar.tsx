@@ -4,7 +4,7 @@ import { Link } from "gatsby"
 import Container from "./container"
 
 const Navbar: React.FC = () => (
-  <header className="border-b bg-white">
+  <header className="bg-white">
     <Container className="py-8 sm:pt-12">
       <nav className="text-center">
         <Link
