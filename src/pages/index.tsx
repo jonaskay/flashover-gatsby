@@ -53,7 +53,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <Layout header={<Hero title={title} subtitle={description} />}>
-      <SEO title="Home" />
+      <SEO />
       <Container className="max-w-3xl my-8 sm:my-16 grid gap-6 grid-cols-1 md:grid-cols-2">
         {edges.map(({ node }, index) => {
           const mdx = node.childMdx

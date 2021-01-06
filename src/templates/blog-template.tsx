@@ -31,7 +31,7 @@ const BlogTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={title} description={description} />
+      <SEO title={title} description={description} pathname={route} article />
       <Article>
         <Article.Header date={date} route={route} title={title} />
         <Article.Content>{body}</Article.Content>

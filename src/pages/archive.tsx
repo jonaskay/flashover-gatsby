@@ -37,6 +37,7 @@ const ArchivePage: React.FC<PageProps<DataProps>> = ({ data }) => {
       <SEO
         title="Archive"
         description="Full archive of the weekly Flashover blog posts written between 2018 and 2020"
+        pathname="/archive"
       />
       <div className="bg-white border-b">
         <PageHeader

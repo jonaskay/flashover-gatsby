@@ -1,19 +1,24 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
+import { url } from "inspector"
 
 type SiteData = {
   site: {
     siteMetadata: {
       author: string
       description: string
+      image: string
       title: string
+      url: string
     }
   }
 }
 
 type SEOProps = {
+  article?: boolean
   description?: string
+  image?: string
   lang?: string
   meta?: (
     | {
@@ -27,10 +32,19 @@ type SEOProps = {
         name?: undefined
       }
   )[]
-  title: string
+  pathname?: string
+  title?: string
 }
 
-const SEO: React.FC<SEOProps> = ({ description, lang, meta, title }) => {
+const SEO: React.FC<SEOProps> = ({
+  article,
+  description,
+  image,
+  lang,
+  meta,
+  pathname,
+  title,
+}) => {
   const data: SiteData = useStaticQuery(
     graphql`
       query {
@@ -38,29 +52,40 @@ const SEO: React.FC<SEOProps> = ({ description, lang, meta, title }) => {
           siteMetadata {
             author
             description
+            image: image
             title
+            url: url
           }
         }
       }
     `
   )
 
-  const { site } = data
+  const {
+    site: { siteMetadata },
+  } = data
   const htmlLang = lang || "en"
-  const metaDescription = description || site.siteMetadata.description
-  const defaultTitle = site.siteMetadata.title
+  const metaDescription = description || siteMetadata.description
+  const metaImage = `${siteMetadata.url}${image || siteMetadata.image}`
+  const metaUrl = `${siteMetadata.url}${pathname || `/`}`
+  const defaultTitle = siteMetadata.title
 
   return (
     <Helmet
       htmlAttributes={{
         htmlLang,
       }}
+      defaultTitle={defaultTitle}
       title={title}
       titleTemplate={`%s | ${defaultTitle}`}
       meta={[
         {
           name: `description`,
           content: metaDescription,
+        },
+        {
+          name: `image`,
+          content: metaImage,
         },
         {
           property: `og:title`,
@@ -72,7 +97,11 @@ const SEO: React.FC<SEOProps> = ({ description, lang, meta, title }) => {
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: article ? `article` : `website`,
+        },
+        {
+          property: `og:url`,
+          content: metaUrl,
         },
         {
           name: `twitter:card`,
@@ -80,7 +109,7 @@ const SEO: React.FC<SEOProps> = ({ description, lang, meta, title }) => {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.author,
+          content: siteMetadata.author,
         },
         {
           name: `twitter:title`,
@@ -89,6 +118,10 @@ const SEO: React.FC<SEOProps> = ({ description, lang, meta, title }) => {
         {
           name: `twitter:description`,
           content: metaDescription,
+        },
+        {
+          name: `twitter:image`,
+          content: metaImage,
         },
       ].concat(meta || [])}
     />
