@@ -39,7 +39,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const { data } = await graphql(`
     query {
-      blog: allFile(filter: { sourceInstanceName: { eq: "blog" } }) {
+      blog: allFile(
+        filter: { sourceInstanceName: { eq: "blog" } }
+        sort: { fields: [name], order: ASC }
+      ) {
         edges {
           node {
             childMdx {
@@ -61,7 +64,10 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         }
       }
 
-      archive: allFile(filter: { sourceInstanceName: { eq: "archive" } }) {
+      archive: allFile(
+        filter: { sourceInstanceName: { eq: "archive" } }
+        sort: { fields: [name], order: ASC }
+      ) {
         edges {
           node {
             childMdx {
