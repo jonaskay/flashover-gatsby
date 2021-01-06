@@ -23,18 +23,19 @@ type DataProps = {
     edges: {
       node: {
         childMdx: {
+          id: string
           fields: {
-            route
+            route: string
           }
           frontmatter: {
-            date
-            description
+            date: string
+            description: string
             image: {
               childImageSharp: {
                 fluid: FluidObject
               }
             }
-            title
+            title: string
           }
         }
       }
@@ -58,7 +59,14 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
           const mdx = node.childMdx
           const meta = index === 0 && <Meta text="Latest" />
 
-          return <BlogPostCard data={mdx} meta={meta} featured={index === 0} />
+          return (
+            <BlogPostCard
+              key={mdx.id}
+              data={mdx}
+              meta={meta}
+              featured={index === 0}
+            />
+          )
         })}
         <PageCard
           data={{
@@ -93,6 +101,7 @@ export const query = graphql`
       edges {
         node {
           childMdx {
+            id
             fields {
               route
             }

@@ -3,9 +3,7 @@ import { graphql, PageProps, Link } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
-import Article from "../components/article"
-import PostHeader from "../components/post-header"
-import PostBody from "../components/post-body"
+import Article from "../components/article/article"
 import CTASection from "../components/cta-section"
 
 type DataProps = {
@@ -35,8 +33,8 @@ const BlogTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
     <Layout>
       <SEO title={title} description={description} />
       <Article>
-        <PostHeader date={date} route={route} title={title} />
-        <PostBody>{body}</PostBody>
+        <Article.Header date={date} route={route} title={title} />
+        <Article.Content>{body}</Article.Content>
       </Article>
       <CTASection />
     </Layout>

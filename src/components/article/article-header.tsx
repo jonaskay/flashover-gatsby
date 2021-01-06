@@ -1,16 +1,16 @@
 import { Link } from "gatsby"
 import React from "react"
 
-import Container from "./container"
+import Container from "../container"
 
-type PostHeaderProps = {
+export type ArticleHeaderProps = {
   breadcrumbs?: { text: string; to: string }[]
   date
   title
   route
 }
 
-const PostHeader: React.FC<PostHeaderProps> = ({
+const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   breadcrumbs,
   date,
   title,
@@ -43,4 +43,4 @@ const PostHeader: React.FC<PostHeaderProps> = ({
   </header>
 )
 
-export default PostHeader
+export default ArticleHeader

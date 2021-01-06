@@ -1,10 +1,8 @@
 import React from "react"
-import { graphql, PageProps, Link } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 
 import Layout from "../components/layout"
-import Article from "../components/article"
-import PostHeader from "../components/post-header"
-import PostBody from "../components/post-body"
+import Article from "../components/article/article"
 import ArrowLeft from "../components/arrow-left"
 import ArrowRight from "../components/arrow-right"
 import Container from "../components/container"
@@ -13,7 +11,6 @@ import Meta from "../components/meta/meta"
 import SectionHeading from "../components/section-heading"
 import CTASection from "../components/cta-section"
 import SEO from "../components/seo"
-import { description } from "core-js/fn/symbol/match"
 
 type DataProps = {
   post: {
@@ -66,7 +63,7 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
     <Layout>
       <SEO title={title} description={description} />
       <Article>
-        <PostHeader
+        <Article.Header
           breadcrumbs={[
             { text: "Flashover", to: "/" },
             { text: "Weekly posts", to: "/archive" },
@@ -75,7 +72,7 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
           route={route}
           title={title}
         />
-        <PostBody>{body}</PostBody>
+        <Article.Content>{body}</Article.Content>
       </Article>
       <div className="bg-white">
         <Container className="max-w-3xl py-8">
