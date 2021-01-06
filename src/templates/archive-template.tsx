@@ -66,7 +66,7 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
         <Article.Header
           breadcrumbs={[
             { text: "Flashover", to: "/" },
-            { text: "Weekly posts", to: "/archive" },
+            { text: "Archive", to: "/archive" },
           ]}
           date={date}
           route={route}
