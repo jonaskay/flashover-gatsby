@@ -71,6 +71,10 @@
   }
 
   .article blockquote {
-    @apply my-6 sm:ml-3 pl-3 border-l-2 border-gray-200 text-xl text-gray-700 italic;
+    @apply my-6 sm:ml-3 pl-3 border-l-2 border-gray-200 text-gray-700 italic;
+  }
+
+  .article blockquote p {
+    @apply text-xl;
   }
 }
