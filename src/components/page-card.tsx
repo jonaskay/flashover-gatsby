@@ -1,8 +1,6 @@
 import React from "react"
 
-import CardWrapper from "./card-wrapper"
-import CardBody from "./card-body"
-import CardHeader from "./card-header"
+import Card from "./card/card"
 
 type PageCardProps = {
   data: {
@@ -18,7 +16,7 @@ const PageCard: React.FC<PageCardProps> = ({ data, footer }) => {
   const { description, image, route, title } = data
 
   return (
-    <CardWrapper to={route}>
+    <Card to={route}>
       <div className="flex flex-col sm:flex-row md:flex-col h-full">
         <div className="relative flex-none w-full sm:w-64 md:w-full h-40 sm:h-full md:h-40">
           <img
@@ -26,16 +24,16 @@ const PageCard: React.FC<PageCardProps> = ({ data, footer }) => {
             src={image}
           />
         </div>
-        <CardBody
+        <Card.Body
           align="left"
           justify="between"
-          header={<CardHeader title={title} />}
+          header={<Card.Header heading={title} />}
           footer={footer}
         >
           {description}
-        </CardBody>
+        </Card.Body>
       </div>
-    </CardWrapper>
+    </Card>
   )
 }
 

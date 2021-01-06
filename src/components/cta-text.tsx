@@ -1,11 +1,11 @@
 import React from "react"
 
-type CardCTAProps = {
+type CTATextProps = {
   children: React.ReactNode
 }
 
-const CardCTA: React.FC<CardCTAProps> = ({ children }) => (
+const CTAText: React.FC<CTATextProps> = ({ children }) => (
   <span className="text-indigo-600 text-lg italic">{children}</span>
 )
 
-export default CardCTA
+export default CTAText

@@ -1,20 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600&family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
-  .card-heading {
+  .item-heading {
     @apply mb-4 text-2xl font-semibold;
     position: relative;
   }
 
-  a .card-heading {
+  a .item-heading {
     @apply text-indigo-600 transition-colors;
   }
 
-  a:hover .card-heading, a:focus .card-heading {
+  a:hover .item-heading {
     @apply text-black;
+  }
+
+  .article {
+    @apply leading-relaxed;
+  }
+
+  .article a {
+    @apply text-indigo-600;
+  }
+
+  .article a:hover {
+    text-decoration: underline;
+  }
+
+  .article strong {
+    @apply font-semibold;
+  }
+
+  .article h2 {
+    @apply mt-12 mb-4 text-3xl sm:text-4xl font-semibold text-indigo-600;
+  }
+
+  .article h3 {
+    @apply mt-10 mb-4 text-2xl font-semibold text-indigo-600;
+  }
+
+  .article p, .article li {
+    @apply text-lg;
+  }
+
+  .article p {
+    @apply my-4;
+  }
+
+  .article ul, .article ol {
+    @apply ml-8;
+  }
+
+  .article ul {
+    list-style-type: disc;
+  }
+
+  .article li > ul {
+    list-style-type: circle;
+  }
+
+  .article ol {
+    list-style-type: decimal;
+  }
+
+  .article ul > li, .article ol > li {
+    @apply my-2;
+  }
+
+  .article blockquote {
+    @apply my-6 sm:ml-3 pl-3 border-l-2 border-gray-200 text-xl text-gray-700 italic;
   }
 }

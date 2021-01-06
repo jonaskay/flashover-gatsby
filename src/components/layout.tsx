@@ -1,21 +1,20 @@
 import React from "react"
 
-import Header from "./header"
+import Navbar from "./navbar"
 import Footer from "./footer"
 
 type LayoutProps = {
   children: React.ReactNode
+  className?: string
+  header?: React.ReactNode
 }
 
-const Layout: React.FC<LayoutProps> = ({ children }) => (
-  <>
-    <Header
-      title="Flashover"
-      subtitle="Blog posts about the technical and non-technical work in the software industry"
-    />
-    <main className="container mx-auto -mt-24 sm:-mt-36">{children}</main>
+const Layout: React.FC<LayoutProps> = ({ children, className, header }) => (
+  <div className={className}>
+    {header || <Navbar />}
+    <main>{children}</main>
     <Footer />
-  </>
+  </div>
 )
 
 export default Layout

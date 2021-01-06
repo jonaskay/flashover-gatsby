@@ -1,6 +1,10 @@
 import React from "react"
 import { Link } from "gatsby"
 
+import CardBody, { CardBodyProps } from "./card-body"
+import CardHeader, { CardHeaderProps } from "./card-header"
+import CardHeading, { CardHeadingProps } from "./card-heading"
+
 const THEMES = {
   primary: {
     backgroundColor: "bg-indigo-100",
@@ -12,19 +16,20 @@ const THEMES = {
   },
 }
 
-type CardWrapperProps = {
+type CardProps = {
   children: React.ReactNode
   size?: "large" | "base"
   theme?: "primary" | "secondary"
   to?: string
 }
 
-const CardWrapper: React.FC<CardWrapperProps> = ({
-  children,
-  size,
-  theme,
-  to,
-}) => {
+type CardComponent = React.FC<CardProps> & {
+  Body: React.FC<CardBodyProps>
+  Header: React.FC<CardHeaderProps>
+  Heading: React.FC<CardHeadingProps>
+}
+
+const Card: CardComponent = ({ children, size, theme, to }) => {
   const columnSpan = size === "large" ? 2 : 1
   const backgroundColor = theme ? THEMES[theme].backgroundColor : "bg-white"
   const borderColor = theme ? THEMES[theme].borderColor : "border-gray-200"
@@ -42,4 +47,8 @@ const CardWrapper: React.FC<CardWrapperProps> = ({
   )
 }
 
-export default CardWrapper
+Card.Body = CardBody
+Card.Header = CardHeader
+Card.Heading = CardHeading
+
+export default Card

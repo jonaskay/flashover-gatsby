@@ -1,31 +1,28 @@
 import React from "react"
 
-import CardWrapper from "./card-wrapper"
-import CardBody from "./card-body"
-import CardHeader from "./card-header"
-import CardCTA from "./card-cta"
+import Card from "./card/card"
+import ReadMore from "./read-more"
 
-type ContentCardProps = {
+type BlogPostProps = {
   data: {
     description: string
-    image: string
+    image?: string
     route: string
     title: string
   }
-  latest?: boolean
+  meta?: React.ReactNode
   size?: "large" | "base"
 }
 
-const ContentCard: React.FC<ContentCardProps> = ({ data, latest, size }) => {
+const BlogPost: React.FC<BlogPostProps> = ({ data, meta, size }) => {
   const { description, image, route, title } = data
-  const meta = latest && "Latest"
-  const header = <CardHeader title={title} meta={meta} />
-  const footer = <CardCTA>Read more&hellip;</CardCTA>
+  const header = <Card.Header heading={title} meta={meta} />
+  const footer = <ReadMore />
 
   return (
-    <CardWrapper size={size || "base"} to={route}>
+    <Card size={size || "base"} to={route}>
       <div className="flex flex-col sm:flex-row h-full">
-        {size === "large" && (
+        {size === "large" && image && (
           <div className="relative flex-none w-full sm:w-64 h-40 sm:h-full">
             <img
               className="absolute top-0 left-0 w-full h-full object-cover"
@@ -33,17 +30,17 @@ const ContentCard: React.FC<ContentCardProps> = ({ data, latest, size }) => {
             />
           </div>
         )}
-        <CardBody
+        <Card.Body
           align="left"
           justify="between"
           header={header}
           footer={footer}
         >
           {description}
-        </CardBody>
+        </Card.Body>
       </div>
-    </CardWrapper>
+    </Card>
   )
 }
 
-export default ContentCard
+export default BlogPost

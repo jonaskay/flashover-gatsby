@@ -4,7 +4,7 @@ module.exports = {
   theme: {
     fontFamily: {
       sans: ["Inter", "sans-serif"],
-      serif: ["Crimson Text", "serif"],
+      serif: ["Crimson Pro", "serif"],
     },
     extend: {},
   },

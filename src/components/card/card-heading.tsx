@@ -1,11 +1,11 @@
 import React from "react"
 
-type CardHeadingProps = {
+export type CardHeadingProps = {
   children: React.ReactNode
 }
 
 const CardHeading: React.FC<CardHeadingProps> = ({ children }) => (
-  <h3 className="card-heading">{children}</h3>
+  <h3 className="item-heading">{children}</h3>
 )
 
 export default CardHeading

@@ -1,6 +1,6 @@
 import React from "react"
 
-type CardBodyProps = {
+export type CardBodyProps = {
   align: "center" | "left"
   children: React.ReactNode
   footer?: React.ReactNode
