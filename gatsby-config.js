@@ -8,6 +8,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-postcss`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -64,6 +65,7 @@ module.exports = {
         icon: `src/images/flashover-icon.png`,
       },
     },
+    `gatsby-plugin-netlify`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
@@ -71,7 +73,6 @@ module.exports = {
         anonymize: true,
       },
     },
-    `gatsby-plugin-postcss`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
