@@ -1,152 +1,103 @@
 import React from "react"
-import { graphql, PageProps } from "gatsby"
+import { graphql, Link, PageProps } from "gatsby"
 
 import Layout from "../components/layout"
-import Article from "../components/article/article"
-import ArrowLeft from "../components/arrow-left"
-import ArrowRight from "../components/arrow-right"
+import SEO from "../components/seo"
+import PageHeader from "../components/page-header"
 import Container from "../components/container"
 import BlogPostCard from "../components/blog-post-card"
-import Meta from "../components/meta/meta"
-import SectionHeading from "../components/section-heading"
-import CTASection from "../components/cta-section"
-import SEO from "../components/seo"
+import Pagination from "../components/pagination"
 
 type DataProps = {
-  post: {
-    body: string
-    fields: {
-      route: string
-    }
-    frontmatter: {
-      date: string
-      description: string
-      title: string
-    }
-  }
-  next?: {
-    fields: {
-      route: string
-    }
-    frontmatter: {
-      date: string
-      description: string
-      title: string
-    }
-  }
-  previous?: {
-    fields: {
-      route: string
-    }
-    frontmatter: {
-      date: string
-      description: string
-      title: string
-    }
+  allFile: {
+    edges: {
+      node: {
+        childMdx: {
+          id: string
+          fields: {
+            route: string
+          }
+          frontmatter: {
+            date: string
+            description: string
+            title: string
+          }
+        }
+      }
+    }[]
   }
 }
 
-const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
+type PageContextProps = {
+  currentPage: number
+  limit: number
+  pageCount: number
+  pathname: string
+  skip: number
+}
+
+const ArchiveIndexTemplate: React.FC<
+  PageProps<DataProps, PageContextProps>
+> = ({ data, pageContext }) => {
   const {
-    post: {
-      body,
-      fields: { route },
-      frontmatter: { title, description, date },
-    },
-    next,
-    previous,
+    allFile: { edges },
   } = data
 
-  const columns = next && previous ? "2" : "1"
+  const { currentPage, pageCount, pathname } = pageContext
 
   return (
     <Layout>
-      <SEO title={title} description={description} pathname={route} article />
-      <Article>
-        <Article.Header
-          breadcrumbs={[
-            { text: "Flashover", to: "/" },
-            { text: "Archive", to: "/archive" },
-          ]}
-          date={date}
-          route={route}
-          title={title}
+      <SEO
+        title="Archive"
+        description="Full archive of the weekly Flashover blog posts written between 2018 and 2020"
+        pathname={pathname}
+      />
+      <div className="bg-white border-b">
+        <PageHeader
+          title="Archive"
+          subtitle="Collection of weekly blog posts written between 2018 and 2020"
         />
-        <Article.Content>{body}</Article.Content>
-      </Article>
-      <div className="bg-white">
-        <Container className="max-w-3xl py-8">
-          <SectionHeading align="center">Read more weekly posts</SectionHeading>
-          <div className={`grid gap-6 grid-cols-1 sm:grid-cols-${columns}`}>
-            {previous && (
-              <BlogPostCard
-                data={previous}
-                meta={
-                  <Meta>
-                    <Meta.Icon>
-                      <ArrowLeft />
-                    </Meta.Icon>
-                    <Meta.Text>Previous post</Meta.Text>
-                  </Meta>
-                }
-              />
-            )}
-            {next && (
-              <BlogPostCard
-                data={next}
-                meta={
-                  <Meta>
-                    <Meta.Text>Next post</Meta.Text>
-                    <Meta.Icon>
-                      <ArrowRight />
-                    </Meta.Icon>
-                  </Meta>
-                }
-              />
-            )}
-          </div>
+        <Container className="my-8 sm:my-16 grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+          {edges.map(({ node }) => {
+            const mdx = node.childMdx
+
+            return <BlogPostCard key={mdx.id} data={mdx} />
+          })}
         </Container>
+        <Pagination
+          basePath="/archive"
+          currentPage={currentPage}
+          pageCount={pageCount}
+        />
       </div>
-      <CTASection />
     </Layout>
   )
 }
 
-export default ArchiveTemplate
+export default ArchiveIndexTemplate
 
 export const query = graphql`
-  query($route: String!, $next: String, $previous: String) {
-    post: mdx(fields: { route: { eq: $route } }) {
-      body
-      fields {
-        route
-      }
-      frontmatter {
-        date(formatString: "MMM DD, YYYY")
-        description
-        title
-      }
-    }
-
-    next: mdx(id: { eq: $next }) {
-      fields {
-        route
-      }
-      frontmatter {
-        date(formatString: "MMM DD, YYYY")
-        description
-        title
-      }
-    }
-
-    previous: mdx(id: { eq: $previous }) {
-      fields {
-        route
-      }
-      frontmatter {
-        date(formatString: "MMM DD, YYYY")
-        description
-        title
+  query($skip: Int = 0, $limit: Int = 15) {
+    allFile(
+      filter: { sourceInstanceName: { eq: "archive" } }
+      sort: { fields: [name], order: DESC }
+      limit: $limit
+      skip: $skip
+    ) {
+      edges {
+        node {
+          childMdx {
+            id
+            fields {
+              route
+            }
+            frontmatter {
+              date(formatString: "MMM DD, YYYY")
+              description
+              title
+            }
+          }
+        }
       }
     }
   }

@@ -18,6 +18,16 @@
     @apply text-black;
   }
 
+  a.active {
+    @apply bg-indigo-600 text-white;
+
+    border-radius: 9999px;
+  }
+
+  a.active:hover {
+    text-decoration: none;
+  }
+
   .article {
     @apply leading-relaxed;
   }

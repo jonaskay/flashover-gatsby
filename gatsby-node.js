@@ -37,6 +37,41 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     })
   }
 
+  createPagesForPagination = (items, segment, template) => {
+    const { createPage, createRedirect } = actions
+
+    const itemsPerPage = 15
+    const pageCount = Math.ceil(items.length / itemsPerPage)
+
+    for (let i = 0; i < pageCount; i++) {
+      let pathname
+      if (i === 0) {
+        createRedirect({
+          fromPath: `${segment}/page/${i + 1}`,
+          toPath: segment,
+          isPermanent: true,
+        })
+        pathname = segment
+      } else {
+        pathname = `${segment}/page/${i + 1}`
+      }
+
+      createPage({
+        path: pathname,
+        component: path.resolve(
+          path.join(__dirname, "src", "templates", template)
+        ),
+        context: {
+          limit: itemsPerPage,
+          skip: i * itemsPerPage,
+          currentPage: i + 1,
+          pageCount,
+          pathname,
+        },
+      })
+    }
+  }
+
   const { data } = await graphql(`
     query {
       blog: allFile(
@@ -95,6 +130,12 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     reporter.panicOnBuild(`Errors while loading MDX files`)
   }
 
-  createPagesFromFiles(data.blog.edges, "blog-template.tsx")
-  createPagesFromFiles(data.archive.edges, "archive-template.tsx")
+  createPagesFromFiles(data.blog.edges, "blog-post-template.tsx")
+  createPagesFromFiles(data.archive.edges, "weekly-post-template.tsx")
+
+  createPagesForPagination(
+    data.archive.edges,
+    "/archive",
+    "archive-template.tsx"
+  )
 }
