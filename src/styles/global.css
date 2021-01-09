@@ -52,6 +52,47 @@
     @apply mt-10 mb-4 text-2xl font-semibold text-indigo-600;
   }
 
+  .article .anchor.before {
+    position: absolute;
+  }
+
+  .article h2 > .anchor.before, .article h3 > .anchor.before {
+    @apply -ml-4 w-4;
+  }
+
+  .article h2 > .anchor.before {
+    top: 11px;
+  }
+
+  .article h3 > .anchor.before {
+    top: 9px;
+  }
+
+  @screen sm {
+    .article h2 > .anchor.before {
+      @apply w-6 -ml-7;
+      top: 9px;
+    }
+
+    .article h3 > .anchor.before {
+      @apply w-5 -ml-6;
+      top: 6px;
+    }
+  }
+
+  .article .anchor.before > svg {
+    visibility: hidden;
+  }
+
+  .article h2:hover > .anchor.before > svg, .article h3:hover > .anchor.before > svg, .article .anchor.before:hover > svg {
+    visibility: visible;
+  }
+
+  .article .anchor.before > svg path {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
   .article p, .article li {
     @apply text-lg;
   }
