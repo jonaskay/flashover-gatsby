@@ -7,7 +7,7 @@ import ReadMore from "./read-more"
 type BlogPostProps = {
   data: {
     fields: {
-      route: string
+      slug: string
     }
     frontmatter: {
       date: string
@@ -26,7 +26,7 @@ type BlogPostProps = {
 
 const BlogPost: React.FC<BlogPostProps> = ({ data, featured, meta }) => {
   const {
-    fields: { route },
+    fields: { slug },
     frontmatter: { date, description, image, title },
   } = data
   const header = <Card.Header heading={title} meta={meta} featured={featured} />
@@ -38,7 +38,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ data, featured, meta }) => {
   )
 
   return (
-    <Card columns={featured ? 2 : 1} to={route}>
+    <Card columns={featured ? 2 : 1} to={slug}>
       <div className="flex flex-col sm:flex-row h-full">
         {featured && image && (
           <div className="hidden sm:block flex-none w-64 h-full">

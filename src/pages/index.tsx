@@ -25,7 +25,7 @@ type DataProps = {
         childMdx: {
           id: string
           fields: {
-            route: string
+            slug: string
           }
           frontmatter: {
             date: string
@@ -72,7 +72,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
           data={{
             description:
               "I wrote a blog post every week for 2 years. You can find those posts here.",
-            route: "/archive",
+            slug: "/archive",
             title: "Weekly blog (2018-2020)",
           }}
           footer={<CTAText>Go to archive</CTAText>}
@@ -103,7 +103,7 @@ export const query = graphql`
           childMdx {
             id
             fields {
-              route
+              slug
             }
             frontmatter {
               date(formatString: "MMM DD, YYYY")

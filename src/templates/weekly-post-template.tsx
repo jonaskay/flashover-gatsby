@@ -16,7 +16,7 @@ type DataProps = {
   post: {
     body: string
     fields: {
-      route: string
+      slug: string
     }
     frontmatter: {
       date: string
@@ -26,7 +26,7 @@ type DataProps = {
   }
   next?: {
     fields: {
-      route: string
+      slug: string
     }
     frontmatter: {
       date: string
@@ -36,7 +36,7 @@ type DataProps = {
   }
   previous?: {
     fields: {
-      route: string
+      slug: string
     }
     frontmatter: {
       date: string
@@ -50,7 +50,7 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const {
     post: {
       body,
-      fields: { route },
+      fields: { slug },
       frontmatter: { title, description, date },
     },
     next,
@@ -61,7 +61,7 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={title} description={description} pathname={route} article />
+      <SEO title={title} description={description} pathname={slug} article />
       <Article>
         <Article.Header
           breadcrumbs={[
@@ -69,7 +69,7 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
             { text: "Archive", to: "/archive" },
           ]}
           date={date}
-          route={route}
+          slug={slug}
           title={title}
         />
         <Article.Content>{body}</Article.Content>
@@ -115,11 +115,11 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
 export default ArchiveTemplate
 
 export const query = graphql`
-  query($route: String!, $next: String, $previous: String) {
-    post: mdx(fields: { route: { eq: $route } }) {
+  query($slug: String!, $next: String, $previous: String) {
+    post: mdx(fields: { slug: { eq: $slug } }) {
       body
       fields {
-        route
+        slug
       }
       frontmatter {
         date(formatString: "MMM DD, YYYY")
@@ -130,7 +130,7 @@ export const query = graphql`
 
     next: mdx(id: { eq: $next }) {
       fields {
-        route
+        slug
       }
       frontmatter {
         date(formatString: "MMM DD, YYYY")
@@ -141,7 +141,7 @@ export const query = graphql`
 
     previous: mdx(id: { eq: $previous }) {
       fields {
-        route
+        slug
       }
       frontmatter {
         date(formatString: "MMM DD, YYYY")

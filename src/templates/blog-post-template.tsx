@@ -10,7 +10,7 @@ type DataProps = {
   mdx: {
     body: string
     fields: {
-      route: string
+      slug: string
     }
     frontmatter: {
       date: string
@@ -24,16 +24,16 @@ const BlogTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const {
     mdx: {
       body,
-      fields: { route },
+      fields: { slug },
       frontmatter: { title, description, date },
     },
   } = data
 
   return (
     <Layout>
-      <SEO title={title} description={description} pathname={route} article />
+      <SEO title={title} description={description} pathname={slug} article />
       <Article>
-        <Article.Header date={date} route={route} title={title} />
+        <Article.Header date={date} slug={slug} title={title} />
         <Article.Content>{body}</Article.Content>
       </Article>
       <CTASection />
@@ -44,11 +44,11 @@ const BlogTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
 export default BlogTemplate
 
 export const query = graphql`
-  query($route: String!) {
-    mdx(fields: { route: { eq: $route } }) {
+  query($slug: String!) {
+    mdx(fields: { slug: { eq: $slug } }) {
       body
       fields {
-        route
+        slug
       }
       frontmatter {
         date(formatString: "MMM DD, YYYY")

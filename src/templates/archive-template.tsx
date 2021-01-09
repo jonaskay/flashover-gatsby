@@ -15,7 +15,7 @@ type DataProps = {
         childMdx: {
           id: string
           fields: {
-            route: string
+            slug: string
           }
           frontmatter: {
             date: string
@@ -89,7 +89,7 @@ export const query = graphql`
           childMdx {
             id
             fields {
-              route
+              slug
             }
             frontmatter {
               date(formatString: "MMM DD, YYYY")

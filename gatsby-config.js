@@ -1,3 +1,5 @@
+const feedBuilder = require("./src/common/feed-builder")
+
 module.exports = {
   siteMetadata: {
     title: `Flashover`,
@@ -9,6 +11,59 @@ module.exports = {
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-postcss`,
+    {
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                author
+                description
+                title
+                url
+              }
+            }
+          }
+        `,
+        setup: ({ query: { site } }) => feedBuilder.feedOptions(site),
+        feeds: [
+          {
+            serialize: ({ query: { site, allFile } }) => {
+              return allFile.edges.map(({ node }) =>
+                feedBuilder.itemOptions(site, node)
+              )
+            },
+            query: `
+              {
+                allFile(
+                  filter: { sourceInstanceName: { eq: "blog" } }
+                  sort: { fields: [name], order: DESC }
+                  limit: 10
+                ) {
+                  edges {
+                    node {
+                      childMdx {
+                        fields {
+                          slug
+                        }
+                        frontmatter {
+                          date
+                          description
+                          title
+                        }
+                        html
+                      }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/feed.xml",
+          },
+        ],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

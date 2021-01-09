@@ -1,7 +1,6 @@
 import React from "react"
 import { Helmet } from "react-helmet"
 import { useStaticQuery, graphql } from "gatsby"
-import { url } from "inspector"
 
 type SiteData = {
   site: {
@@ -52,9 +51,9 @@ const SEO: React.FC<SEOProps> = ({
           siteMetadata {
             author
             description
-            image: image
+            image
             title
-            url: url
+            url
           }
         }
       }

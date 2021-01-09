@@ -9,9 +9,9 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   if (node.internal.type === "Mdx") {
     const filename = createFilePath({ node, getNode })
     const title = new FilenameParser(filename).title()
-    const route = `/posts/${title}`
+    const slug = `/posts/${title}`
 
-    createNodeField({ name: "route", node, value: route })
+    createNodeField({ name: "slug", node, value: slug })
   }
 }
 
@@ -21,17 +21,17 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
     files.forEach(file => {
       const { node, next, previous } = file
-      const { route } = node.childMdx.fields
+      const { slug } = node.childMdx.fields
 
       createPage({
-        path: route,
+        path: slug,
         component: path.resolve(
           path.join(__dirname, "src", "templates", template)
         ),
         context: {
           next: next && next.childMdx.id,
           previous: previous && previous.childMdx.id,
-          route: route,
+          slug: slug,
         },
       })
     })
@@ -82,7 +82,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           node {
             childMdx {
               fields {
-                route
+                slug
               }
             }
           }
@@ -107,7 +107,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           node {
             childMdx {
               fields {
-                route
+                slug
               }
             }
           }
