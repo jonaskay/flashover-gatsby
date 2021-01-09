@@ -1,8 +1,9 @@
 module.exports = {
   purge: [],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: false,
   theme: {
     fontFamily: {
+      mono: ["Cutive Mono", "monospace"],
       sans: ["Inter", "sans-serif"],
       serif: ["Crimson Pro", "serif"],
     },

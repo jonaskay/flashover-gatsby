@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Inter&family=Cutive+Mono&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -127,5 +127,17 @@
 
   .article blockquote p {
     @apply text-xl;
+  }
+
+  .article code {
+    @apply bg-gray-100 px-0.5 py-0.5 border rounded font-mono;
+
+    overflow-x: auto;
+  }
+
+  .article pre > code {
+    @apply p-4;
+
+    display: block;
   }
 }
