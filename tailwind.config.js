@@ -1,5 +1,7 @@
 module.exports = {
-  purge: ["./src/**/*.{js,jsx,ts,tsx,css}"],
+  purge: {
+    content: ["./src/**/*.{js,jsx,ts,tsx,css}", "./gatsby-ssr.js"],
+  },
   darkMode: false,
   theme: {
     fontFamily: {
