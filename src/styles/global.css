@@ -28,6 +28,15 @@
     text-decoration: none;
   }
 
+  ul.footer-links > li::after {
+    @apply mx-2;
+    content: "-";
+  }
+
+  ul.footer-links > li:last-child::after {
+    content: none;
+  }
+
   .article {
     @apply leading-relaxed;
   }

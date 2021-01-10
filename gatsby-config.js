@@ -1,3 +1,4 @@
+const RepositoryParser = require("./src/common/repository-parser")
 const feedBuilder = require("./src/common/feed-builder")
 
 module.exports = {
@@ -7,6 +8,9 @@ module.exports = {
     image: "/images/default.jpg",
     url: "https://www.flashover.blog",
     author: `@joonaskykkanen`,
+    repository: new RepositoryParser(
+      process.env.npm_package_repository_url
+    ).url(),
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
