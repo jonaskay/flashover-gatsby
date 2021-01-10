@@ -1,6 +1,8 @@
 import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
+import routes from "../common/routes"
+
 type SiteData = {
   site: {
     siteMetadata: {
@@ -24,7 +26,7 @@ const RSSLink: React.FC = () => {
 
   return (
     <a
-      href={data.site.siteMetadata.url + "/feed.xml"}
+      href={data.site.siteMetadata.url + routes.rss}
       className="text-indigo-600 font-semibold"
     >
       RSS

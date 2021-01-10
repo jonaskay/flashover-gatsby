@@ -7,6 +7,7 @@ import PageHeader from "../components/page-header"
 import Container from "../components/container"
 import BlogPostCard from "../components/blog-post-card"
 import Pagination from "../components/pagination"
+import routes from "../common/routes"
 
 type DataProps = {
   allFile: {
@@ -65,7 +66,7 @@ const ArchiveIndexTemplate: React.FC<
           })}
         </Container>
         <Pagination
-          basePath="/archive"
+          basePath={routes.archive}
           currentPage={currentPage}
           pageCount={pageCount}
         />

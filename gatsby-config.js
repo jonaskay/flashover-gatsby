@@ -1,5 +1,6 @@
 const RepositoryParser = require("./src/common/repository-parser")
 const feedBuilder = require("./src/common/feed-builder")
+const routes = require("./src/common/routes")
 
 module.exports = {
   siteMetadata: {
@@ -63,7 +64,7 @@ module.exports = {
                 }
               }
             `,
-            output: "/feed.xml",
+            output: routes.rss,
           },
         ],
       },

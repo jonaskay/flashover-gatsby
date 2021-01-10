@@ -2,6 +2,7 @@ const path = require("path")
 const { createFilePath } = require("gatsby-source-filesystem")
 
 const FilenameParser = require("./src/common/filename-parser")
+const routes = require("./src/common/routes")
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
@@ -135,7 +136,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   createPagesForPagination(
     data.archive.edges,
-    "/archive",
+    routes.archive,
     "archive-template.tsx"
   )
 }

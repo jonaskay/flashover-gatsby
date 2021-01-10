@@ -11,6 +11,7 @@ import PageCard from "../components/page-card"
 import CTACard from "../components/cta-card"
 import CTAText from "../components/cta-text"
 import Meta from "../components/meta/meta"
+import routes from "../common/routes"
 
 type DataProps = {
   site: {
@@ -72,7 +73,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
           data={{
             description:
               "I wrote a blog post every week for 2 years. You can find those posts here.",
-            slug: "/archive",
+            path: routes.archive,
             title: "Weekly blog (2018-2020)",
           }}
           footer={<CTAText>Go to archive</CTAText>}

@@ -11,6 +11,7 @@ import Meta from "../components/meta/meta"
 import SectionHeading from "../components/section-heading"
 import CTASection from "../components/cta-section"
 import SEO from "../components/seo"
+import routes from "../common/routes"
 
 type DataProps = {
   post: {
@@ -65,8 +66,8 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       <Article>
         <Article.Header
           breadcrumbs={[
-            { text: "Flashover", to: "/" },
-            { text: "Archive", to: "/archive" },
+            { text: "Flashover", to: routes.root },
+            { text: "Archive", to: routes.archive },
           ]}
           date={date}
           slug={slug}
