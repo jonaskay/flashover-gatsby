@@ -40,7 +40,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   createPagesForPagination = (items, segment, template) => {
     const { createPage, createRedirect } = actions
 
-    const itemsPerPage = 15
+    const itemsPerPage = 18
     const pageCount = Math.ceil(items.length / itemsPerPage)
 
     for (let i = 0; i < pageCount; i++) {

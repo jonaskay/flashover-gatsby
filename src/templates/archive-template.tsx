@@ -77,7 +77,7 @@ const ArchiveIndexTemplate: React.FC<
 export default ArchiveIndexTemplate
 
 export const query = graphql`
-  query($skip: Int = 0, $limit: Int = 15) {
+  query($skip: Int = 0, $limit: Int = 18) {
     allFile(
       filter: { sourceInstanceName: { eq: "archive" } }
       sort: { fields: [name], order: DESC }
