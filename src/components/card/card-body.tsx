@@ -21,27 +21,58 @@ const CardBody: React.FC<CardBodyProps> = ({
   header,
   image,
   justify,
-}) => (
-  <div
-    className={`flex flex-col justify-${justify} h-full p-4 sm:p-8 text-${align} z-10`}
-  >
-    <div>
-      {header && header}
+}) => {
+  let justifyContent
+  switch (justify) {
+    case "between":
+      justifyContent = "justify-between"
+      break
+    case "center":
+      justifyContent = "justify-center"
+      break
+    case "end":
+      justifyContent = "justify-end"
+      break
+    default:
+      throw `Invalid value ${justify}`
+  }
 
-      {image ? (
-        <div className="flex items-start">
-          <Image
-            className="sm:hidden flex-none w-2/5 mr-4 border"
-            fluid={image.childImageSharp.fluid}
-          />
+  let textAlign
+  switch (align) {
+    case "center":
+      textAlign = "text-center"
+      break
+    case "left":
+      textAlign = "text-left"
+      break
+    default:
+      throw `Invalid value ${align}`
+  }
+
+  return (
+    <div
+      className={`flex flex-col ${justifyContent} h-full p-4 sm:p-8 ${textAlign} z-10`}
+    >
+      <div>
+        {header && header}
+
+        {image ? (
+          <div className="flex items-start">
+            <Image
+              className="sm:hidden flex-none w-2/5 mr-4 border"
+              fluid={image.childImageSharp.fluid}
+            />
+            <div className="text-lg">{children}</div>
+          </div>
+        ) : (
           <div className="text-lg">{children}</div>
-        </div>
-      ) : (
-        <div className="text-lg">{children}</div>
+        )}
+      </div>
+      {footer && (
+        <div className="justify-self-end mt-8 text-right">{footer}</div>
       )}
     </div>
-    {footer && <div className="justify-self-end mt-8 text-right">{footer}</div>}
-  </div>
-)
+  )
+}
 
 export default CardBody
