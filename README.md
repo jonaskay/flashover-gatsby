@@ -1,6 +1,6 @@
 # Flashover
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ebcde820-7a0c-42a2-9881-a4af06411f92/deploy-status)](https://app.netlify.com/sites/flashover-gatsby/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/f7e5f080-bc10-4101-9e03-a022684787cf/deploy-status)](https://app.netlify.com/sites/flashover/deploys)
 
 This is my personal blog built with [Gatsby](https://www.gatsbyjs.com/). You can read it at: <https://www.flashover.blog/>.
 
@@ -43,4 +43,6 @@ To run the tests in watch mode, run
 
 ## Deployment
 
-The site is deployed using [Netlify](https://www.netlify.com/). Each push to the `main` branch triggers a new build.
+The site is deployed using [Netlify](https://www.netlify.com/). Deploy config can be found in [`.netlify.toml`](.netlify.toml).
+
+Each push to the `main` branch triggers a new build.
