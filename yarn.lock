@@ -1319,6 +1319,21 @@
     ts-node "^9"
     tslib "^2"
 
+"@fontsource/crimson-pro@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/crimson-pro/-/crimson-pro-4.1.0.tgz#2cd349bc8e2cd9506e1c3de70212884f0520fd8e"
+  integrity sha512-KN/LCD1TlN5/7+n0l05F3ZdICgy9WlHKUkA1H6bhH9Kbjjy3xqejhlJjncEFn/XfTEbElIA6pPva5MCblM80Yw==
+
+"@fontsource/cutive-mono@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/cutive-mono/-/cutive-mono-4.1.0.tgz#5cd560e7a3f16ca1227b663e9d44a0a87d736cd8"
+  integrity sha512-HasT0DZ/4WTRSje++I0AIOnnqo/EmxhU1VTPSExd26oNBcG01HHJAxjMkWMj79I65yGBoZr1mXteizhKhttSDg==
+
+"@fontsource/inter@^4.1.0":
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.1.0.tgz#5c5d5411487aca1b7a8caccba5e995b81051a14a"
+  integrity sha512-v1JHGLAejSV0ec6fVR31vrojpM+JUiNVn0xJxL/ngmbyClDEf8qna5NFsu/xef67KT2kQ2YaU+wCuQEQHG55sw==
+
 "@fullhuman/postcss-purgecss@^3.0.0":
   version "3.1.3"
   resolved "https://registry.yarnpkg.com/@fullhuman/postcss-purgecss/-/postcss-purgecss-3.1.3.tgz#47af7b87c9bfb3de4bc94a38f875b928fffdf339"
