@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, Link, PageProps } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
@@ -37,9 +37,10 @@ type PageContextProps = {
   skip: number
 }
 
-const ArchiveIndexTemplate: React.FC<
-  PageProps<DataProps, PageContextProps>
-> = ({ data, pageContext }) => {
+const ArchiveTemplate: React.FC<PageProps<DataProps, PageContextProps>> = ({
+  data,
+  pageContext,
+}) => {
   const {
     allFile: { edges },
   } = data
@@ -75,7 +76,7 @@ const ArchiveIndexTemplate: React.FC<
   )
 }
 
-export default ArchiveIndexTemplate
+export default ArchiveTemplate
 
 export const query = graphql`
   query($skip: Int = 0, $limit: Int = 18) {
