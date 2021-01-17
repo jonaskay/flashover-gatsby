@@ -35,6 +35,10 @@
     content: none;
   }
 
+  ol.search-hits > li::marker {
+    @apply text-xl text-gray-500;
+  }
+
   .article {
     @apply leading-relaxed;
   }

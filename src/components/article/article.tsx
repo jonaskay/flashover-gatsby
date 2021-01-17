@@ -13,7 +13,7 @@ type ArticleComponent = React.FC<ArticleProps> & {
 }
 
 const Article: ArticleComponent = ({ children }) => (
-  <article className="border-b bg-white">{children}</article>
+  <article className="border-b border-t bg-white">{children}</article>
 )
 
 Article.Header = ArticleHeader

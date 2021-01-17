@@ -1,10 +1,12 @@
 import React from "react"
-import { graphql, PageProps, Link } from "gatsby"
+import { graphql, PageProps } from "gatsby"
 
-import Layout from "../components/layout"
+import Layout from "../layouts/layout"
 import SEO from "../components/seo"
+import Navbar from "../components/navbar"
 import Article from "../components/article/article"
 import CTASection from "../components/cta-section"
+import routes from "../common/routes"
 
 type DataProps = {
   mdx: {
@@ -15,6 +17,7 @@ type DataProps = {
     frontmatter: {
       date: string
       description: string
+      shortTitle: string
       title: string
     }
   }
@@ -25,15 +28,26 @@ const BlogTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
     mdx: {
       body,
       fields: { slug },
-      frontmatter: { title, description, date },
+      frontmatter: { title, shortTitle, description, date },
     },
   } = data
 
   return (
     <Layout>
-      <SEO title={title} description={description} pathname={slug} article />
+      <SEO title={title} description={description} path={slug} article />
+      <div className="bg-white">
+        <Navbar />
+      </div>
       <Article>
-        <Article.Header date={date} slug={slug} title={title} />
+        <Article.Header
+          breadcrumbs={[
+            { text: "Flashover", to: routes.root },
+            { text: shortTitle },
+          ]}
+          date={date}
+          slug={slug}
+          title={title}
+        />
         <Article.Content>{body}</Article.Content>
       </Article>
       <CTASection />
@@ -53,6 +67,7 @@ export const query = graphql`
       frontmatter {
         date(formatString: "MMM DD, YYYY")
         description
+        shortTitle
         title
       }
     }

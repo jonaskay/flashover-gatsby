@@ -1,27 +1,30 @@
 import React from "react"
 
-import Container from "./container"
-import NavbarLink from "./navbar-link"
-import PageTitle from "./page-title"
-import routes from "../common/routes"
+import Header from "./header"
+import Breadcrumbs, { BreadcrumbItems } from "./breadcrumbs"
+import Title from "./title"
 
 type HeroProps = {
-  title: string
-  subtitle: string
+  background?: "bg-gray-100" | "bg-white"
+  breadcrumbs?: BreadcrumbItems
+  size?: "base" | "large"
+  subtitle: React.ReactNode
+  title: React.ReactNode
 }
 
-const Hero: React.FC<HeroProps> = ({ title, subtitle }) => (
-  <header className="bg-white border-b -mb-24 sm:-mb-36 pb-16 sm:pb-24">
-    <Container className="pt-4 text-center sm:text-right">
-      <nav className="-mx-4">
-        <NavbarLink to={routes.root}>Home</NavbarLink>
-        <NavbarLink to={routes.archive}>Archive</NavbarLink>
-      </nav>
-    </Container>
-    <Container className="my-8 sm:my-16">
-      <PageTitle subtitle={subtitle}>{title}</PageTitle>
-    </Container>
-  </header>
+const Hero: React.FC<HeroProps> = ({
+  background = "bg-gray-100",
+  breadcrumbs,
+  title,
+  size = "base",
+  subtitle,
+}) => (
+  <Header className={background}>
+    {breadcrumbs && <Breadcrumbs items={breadcrumbs} />}
+    <Title size={size} subtitle={subtitle}>
+      {title}
+    </Title>
+  </Header>
 )
 
 export default Hero

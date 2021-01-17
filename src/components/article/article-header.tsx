@@ -1,10 +1,11 @@
 import { Link } from "gatsby"
 import React from "react"
+import Breadcrumbs, { BreadcrumbItems } from "../breadcrumbs"
 
 import Container from "../container"
 
 export type ArticleHeaderProps = {
-  breadcrumbs?: { text: string; to: string }[]
+  breadcrumbs?: BreadcrumbItems
   date
   title
   slug
@@ -16,20 +17,9 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
   title,
   slug,
 }) => (
-  <header className="border-t bg-gray-100">
+  <header className="bg-gray-100">
     <Container className="max-w-2xl py-8">
-      {breadcrumbs && (
-        <nav className="mb-2 text-center text-lg">
-          {breadcrumbs.map(breadcrumb => (
-            <span key={breadcrumb.to}>
-              <Link className="text-indigo-600" to={breadcrumb.to}>
-                {breadcrumb.text}
-              </Link>
-              <span className="mx-2 text-gray-500">&gt;</span>
-            </span>
-          ))}
-        </nav>
-      )}
+      <Breadcrumbs items={breadcrumbs} />
       <h1 className="sm:mt-4 mb-8 text-center text-4xl sm:text-5xl text-indigo-600 font-semibold">
         <Link to={slug}>{title}</Link>
       </h1>

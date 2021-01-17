@@ -31,7 +31,7 @@ type SEOProps = {
         name?: undefined
       }
   )[]
-  pathname?: string
+  path?: string
   title?: string
 }
 
@@ -41,7 +41,7 @@ const SEO: React.FC<SEOProps> = ({
   image,
   lang,
   meta,
-  pathname,
+  path,
   title,
 }) => {
   const data: SiteData = useStaticQuery(
@@ -66,7 +66,7 @@ const SEO: React.FC<SEOProps> = ({
   const htmlLang = lang || "en"
   const metaDescription = description || siteMetadata.description
   const metaImage = `${siteMetadata.url}${image || siteMetadata.image}`
-  const metaUrl = `${siteMetadata.url}${pathname || `/`}`
+  const metaUrl = `${siteMetadata.url}${path || `/`}`
   const defaultTitle = siteMetadata.title
 
   return (

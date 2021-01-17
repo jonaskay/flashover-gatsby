@@ -1,7 +1,9 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 
-import Layout from "../components/layout"
+import Layout from "../layouts/layout"
+import SEO from "../components/seo"
+import Navbar from "../components/navbar"
 import Article from "../components/article/article"
 import ArrowLeft from "../components/arrow-left"
 import ArrowRight from "../components/arrow-right"
@@ -10,7 +12,6 @@ import BlogPostCard from "../components/blog-post-card"
 import Meta from "../components/meta/meta"
 import SectionHeading from "../components/section-heading"
 import CTASection from "../components/cta-section"
-import SEO from "../components/seo"
 import routes from "../common/routes"
 
 type DataProps = {
@@ -62,12 +63,16 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
 
   return (
     <Layout>
-      <SEO title={title} description={description} pathname={slug} article />
+      <SEO title={title} description={description} path={slug} article />
+      <div className="bg-white">
+        <Navbar />
+      </div>
       <Article>
         <Article.Header
           breadcrumbs={[
             { text: "Flashover", to: routes.root },
             { text: "Archive", to: routes.archive },
+            { text: `&hellip;` },
           ]}
           date={date}
           slug={slug}

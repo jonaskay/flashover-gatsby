@@ -1,3 +1,5 @@
+require("dotenv").config()
+
 const RepositoryParser = require("./src/common/repository-parser")
 const feedBuilder = require("./src/common/feed-builder")
 const routes = require("./src/common/routes")
@@ -139,6 +141,14 @@ module.exports = {
       options: {
         trackingId: `UA-116599641-4`,
         anonymize: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-algolia`,
+      options: {
+        appId: process.env.GATSBY_ALGOLIA_APP_ID,
+        apiKey: process.env.ALGOLIA_ADMIN_KEY,
+        queries: require("./src/common/algolia-queries"),
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
