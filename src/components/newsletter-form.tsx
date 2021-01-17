@@ -15,6 +15,7 @@ const NewsLetterForm: React.FC = () => {
         type="email"
         name="MERGE0"
         placeholder="Email"
+        aria-label="Email"
         className="block sm:inline-block w-full sm:w-56 mb-2 sm:mb-0 px-2 py-1 border sm:border-r-0 border-indigo-200 shadow-sm text-gray-700"
         value={email}
         onChange={event => setEmail(event.target.value)}
