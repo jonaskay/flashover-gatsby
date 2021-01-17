@@ -1,12 +1,14 @@
 import React from "react"
 
-import Layout from "../components/layout"
+import Layout from "../layouts/layout"
 import SEO from "../components/seo"
+import Navbar from "../components/navbar"
 import Container from "../components/container"
 
 const NotFoundPage: React.FC = () => (
   <Layout>
     <SEO title="404: Not found" />
+    <Navbar />
     <div className="bg-white border-t border-b">
       <Container className="my-8 sm:my-16 text-center">
         <header>

@@ -1,8 +1,8 @@
 import React from "react"
-import { graphql, PageProps } from "gatsby"
+import { graphql, Link, PageProps } from "gatsby"
 import { FluidObject } from "gatsby-image"
 
-import Layout from "../components/layout"
+import LandingLayout from "../layouts/landing"
 import SEO from "../components/seo"
 import Hero from "../components/hero"
 import Container from "../components/container"
@@ -53,9 +53,19 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
   } = data
 
   return (
-    <Layout header={<Hero title={title} subtitle={description} />}>
+    <LandingLayout
+      title={
+        <Link
+          to={routes.root}
+          className="text-indigo-600 hover:text-indigo-500"
+        >
+          {title}
+        </Link>
+      }
+      subtitle={description}
+    >
       <SEO />
-      <Container className="max-w-3xl my-8 sm:my-16 grid gap-6 grid-cols-1 md:grid-cols-2">
+      <Container className="max-w-3xl my-8 grid gap-6 grid-cols-1 md:grid-cols-2">
         {edges.map(({ node }, index) => {
           const mdx = node.childMdx
           const meta = index === 0 && <Meta text="Latest" />
@@ -80,7 +90,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
         />
         <CTACard />
       </Container>
-    </Layout>
+    </LandingLayout>
   )
 }
 
