@@ -22,7 +22,7 @@ type DataProps = {
   }
 }
 
-const BlogPostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
+const BlogTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const {
     mdx: {
       body,
@@ -46,7 +46,7 @@ const BlogPostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   )
 }
 
-export default BlogPostTemplate
+export default BlogTemplate
 
 export const query = graphql`
   query($slug: String!) {

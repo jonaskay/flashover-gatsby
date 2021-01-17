@@ -44,7 +44,7 @@ type DataProps = {
   }
 }
 
-const WeeklyPostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
+const WeeklyTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const {
     post: {
       body,
@@ -107,7 +107,7 @@ const WeeklyPostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   )
 }
 
-export default WeeklyPostTemplate
+export default WeeklyTemplate
 
 export const query = graphql`
   query($slug: String!, $next: String, $previous: String) {
