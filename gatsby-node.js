@@ -131,12 +131,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     reporter.panicOnBuild(`Errors while loading MDX files`)
   }
 
-  createPagesFromFiles(data.blog.edges, "blog-post-template.tsx")
-  createPagesFromFiles(data.archive.edges, "weekly-post-template.tsx")
+  createPagesFromFiles(data.blog.edges, "blog.tsx")
+  createPagesFromFiles(data.archive.edges, "weekly.tsx")
 
-  createPagesForPagination(
-    data.archive.edges,
-    routes.archive,
-    "archive-template.tsx"
-  )
+  createPagesForPagination(data.archive.edges, routes.archive, "archive.tsx")
 }

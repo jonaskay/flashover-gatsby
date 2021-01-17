@@ -1,17 +1,13 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 
-import Layout from "../layouts/layout"
-import SEO from "../components/seo"
-import Navbar from "../components/navbar"
-import Article from "../components/article/article"
-import ArrowLeft from "../components/arrow-left"
-import ArrowRight from "../components/arrow-right"
+import PostLayout from "../layouts/post"
 import Container from "../components/container"
+import SectionHeading from "../components/section-heading"
 import BlogPostCard from "../components/blog-post-card"
 import Meta from "../components/meta/meta"
-import SectionHeading from "../components/section-heading"
-import CTASection from "../components/cta-section"
+import ArrowLeft from "../components/arrow-left"
+import ArrowRight from "../components/arrow-right"
 import routes from "../common/routes"
 
 type DataProps = {
@@ -48,7 +44,7 @@ type DataProps = {
   }
 }
 
-const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
+const WeeklyPostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const {
     post: {
       body,
@@ -62,24 +58,18 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const columns = next && previous ? "2" : "1"
 
   return (
-    <Layout>
-      <SEO title={title} description={description} path={slug} article />
-      <div className="bg-white">
-        <Navbar />
-      </div>
-      <Article>
-        <Article.Header
-          breadcrumbs={[
-            { text: "Flashover", to: routes.root },
-            { text: "Archive", to: routes.archive },
-            { text: `&hellip;` },
-          ]}
-          date={date}
-          slug={slug}
-          title={title}
-        />
-        <Article.Content>{body}</Article.Content>
-      </Article>
+    <PostLayout
+      title={title}
+      description={description}
+      date={date}
+      body={body}
+      path={slug}
+      breadcrumbs={[
+        { text: "Flashover", to: routes.root },
+        { text: "Archive", to: routes.archive },
+        { text: `&hellip;` },
+      ]}
+    >
       <div className="bg-white">
         <Container className="max-w-3xl py-8">
           <SectionHeading align="center">Read more weekly posts</SectionHeading>
@@ -113,12 +103,11 @@ const ArchiveTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
           </div>
         </Container>
       </div>
-      <CTASection />
-    </Layout>
+    </PostLayout>
   )
 }
 
-export default ArchiveTemplate
+export default WeeklyPostTemplate
 
 export const query = graphql`
   query($slug: String!, $next: String, $previous: String) {

@@ -1,8 +1,7 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 
-import Layout from "../layouts/layout"
-import SEO from "../components/seo"
+import PostLayout from "../layouts/post"
 import Navbar from "../components/navbar"
 import Article from "../components/article/article"
 import CTASection from "../components/cta-section"
@@ -23,7 +22,7 @@ type DataProps = {
   }
 }
 
-const BlogTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
+const BlogPostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const {
     mdx: {
       body,
@@ -33,29 +32,21 @@ const BlogTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   } = data
 
   return (
-    <Layout>
-      <SEO title={title} description={description} path={slug} article />
-      <div className="bg-white">
-        <Navbar />
-      </div>
-      <Article>
-        <Article.Header
-          breadcrumbs={[
-            { text: "Flashover", to: routes.root },
-            { text: shortTitle },
-          ]}
-          date={date}
-          slug={slug}
-          title={title}
-        />
-        <Article.Content>{body}</Article.Content>
-      </Article>
-      <CTASection />
-    </Layout>
+    <PostLayout
+      title={title}
+      description={description}
+      date={date}
+      body={body}
+      path={slug}
+      breadcrumbs={[
+        { text: "Flashover", to: routes.root },
+        { text: shortTitle },
+      ]}
+    />
   )
 }
 
-export default BlogTemplate
+export default BlogPostTemplate
 
 export const query = graphql`
   query($slug: String!) {
