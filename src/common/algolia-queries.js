@@ -1,4 +1,4 @@
-const indexName = process.env.ALGOLIA_INDEX_NAME
+const indexName = process.env.GATSBY_ALGOLIA_INDEX_NAME
 
 const query = `
   {
