@@ -12,6 +12,7 @@ type PostLayoutProps = {
   breadcrumbs: BreadcrumbItems
   children?: React.ReactNode
   date: string
+  timeToRead: number
   description: string
   path: string
   title: string
@@ -24,6 +25,7 @@ const PostLayout: React.FC<PostLayoutProps> = ({
   date,
   description,
   path,
+  timeToRead,
   title,
 }) => (
   <Layout>
@@ -35,6 +37,7 @@ const PostLayout: React.FC<PostLayoutProps> = ({
       <Article.Header
         breadcrumbs={breadcrumbs}
         date={date}
+        timeToRead={timeToRead}
         path={path}
         title={title}
       />

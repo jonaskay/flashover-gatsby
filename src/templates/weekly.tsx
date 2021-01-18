@@ -21,6 +21,7 @@ type DataProps = {
       description: string
       title: string
     }
+    timeToRead: number
   }
   next?: {
     fields: {
@@ -31,6 +32,7 @@ type DataProps = {
       description: string
       title: string
     }
+    timeToRead: number
   }
   previous?: {
     fields: {
@@ -41,6 +43,7 @@ type DataProps = {
       description: string
       title: string
     }
+    timeToRead: number
   }
 }
 
@@ -50,6 +53,7 @@ const WeeklyTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       body,
       fields: { slug },
       frontmatter: { title, description, date },
+      timeToRead,
     },
     next,
     previous,
@@ -62,6 +66,7 @@ const WeeklyTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       title={title}
       description={description}
       date={date}
+      timeToRead={timeToRead}
       body={body}
       path={slug}
       breadcrumbs={[
@@ -112,37 +117,16 @@ export default WeeklyTemplate
 export const query = graphql`
   query($slug: String!, $next: String, $previous: String) {
     post: mdx(fields: { slug: { eq: $slug } }) {
+      ...BlogPost
       body
-      fields {
-        slug
-      }
-      frontmatter {
-        date(formatString: "MMM DD, YYYY")
-        description
-        title
-      }
     }
 
     next: mdx(id: { eq: $next }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        date(formatString: "MMM DD, YYYY")
-        description
-        title
-      }
+      ...BlogPost
     }
 
     previous: mdx(id: { eq: $previous }) {
-      fields {
-        slug
-      }
-      frontmatter {
-        date(formatString: "MMM DD, YYYY")
-        description
-        title
-      }
+      ...BlogPost
     }
   }
 `

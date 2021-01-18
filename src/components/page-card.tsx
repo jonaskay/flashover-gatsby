@@ -20,7 +20,7 @@ const PageCard: React.FC<PageCardProps> = ({ data, footer }) => {
         <Card.Body
           align="center"
           justify="between"
-          header={<Card.Header heading={title} />}
+          header={<Card.Header heading={title} divider />}
           footer={footer}
         >
           {description}

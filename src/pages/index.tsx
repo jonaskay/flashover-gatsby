@@ -37,6 +37,7 @@ type DataProps = {
             }
             title: string
           }
+          timeToRead
         }
       }
     }[]
@@ -111,13 +112,8 @@ export const query = graphql`
       edges {
         node {
           childMdx {
-            id
-            fields {
-              slug
-            }
+            ...BlogPost
             frontmatter {
-              date(formatString: "MMM DD, YYYY")
-              description
               image {
                 childImageSharp {
                   fluid {
@@ -125,7 +121,6 @@ export const query = graphql`
                   }
                 }
               }
-              title
             }
           }
         }

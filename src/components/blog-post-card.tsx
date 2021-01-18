@@ -3,6 +3,7 @@ import Image, { FluidObject } from "gatsby-image"
 
 import Card from "./card/card"
 import ReadMore from "./read-more"
+import ArticleMeta from "./article-meta"
 
 type BlogPostProps = {
   data: {
@@ -19,6 +20,7 @@ type BlogPostProps = {
       }
       title: string
     }
+    timeToRead: number
   }
   featured?: boolean
   label?: React.ReactNode
@@ -28,15 +30,20 @@ const BlogPost: React.FC<BlogPostProps> = ({ data, featured, label }) => {
   const {
     fields: { slug },
     frontmatter: { date, description, image, title },
+    timeToRead,
   } = data
   const header = (
-    <Card.Header heading={title} label={label} featured={featured} />
-  )
-  const footer = (
-    <div className="flex items-center justify-between">
-      <div className="text-gray-700">{date} 7 min read</div>
-      <ReadMore />
-    </div>
+    <Card.Header
+      heading={title}
+      label={label}
+      meta={
+        <Card.Meta>
+          <ArticleMeta date={date} timeToRead={timeToRead} />
+        </Card.Meta>
+      }
+      featured={featured}
+      divider
+    />
   )
 
   return (
@@ -56,7 +63,7 @@ const BlogPost: React.FC<BlogPostProps> = ({ data, featured, label }) => {
           image={image}
           justify="between"
           header={header}
-          footer={footer}
+          footer={<ReadMore />}
         >
           {description}
         </Card.Body>

@@ -4,7 +4,7 @@
 
 @layer components {
   .item-heading {
-    @apply mb-4 text-2xl font-semibold;
+    @apply text-2xl font-semibold;
     position: relative;
   }
 
