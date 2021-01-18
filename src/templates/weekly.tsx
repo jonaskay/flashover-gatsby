@@ -5,7 +5,7 @@ import PostLayout from "../layouts/post"
 import Container from "../components/container"
 import SectionHeading from "../components/section-heading"
 import BlogPostCard from "../components/blog-post-card"
-import Meta from "../components/meta/meta"
+import Label from "../components/label/label"
 import ArrowLeft from "../components/arrow-left"
 import ArrowRight from "../components/arrow-right"
 import routes from "../common/routes"
@@ -77,26 +77,26 @@ const WeeklyTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
             {previous && (
               <BlogPostCard
                 data={previous}
-                meta={
-                  <Meta>
-                    <Meta.Icon>
+                label={
+                  <Label>
+                    <Label.Icon>
                       <ArrowLeft />
-                    </Meta.Icon>
-                    <Meta.Text>Previous post</Meta.Text>
-                  </Meta>
+                    </Label.Icon>
+                    <Label.Text>Previous post</Label.Text>
+                  </Label>
                 }
               />
             )}
             {next && (
               <BlogPostCard
                 data={next}
-                meta={
-                  <Meta>
-                    <Meta.Text>Next post</Meta.Text>
-                    <Meta.Icon>
+                label={
+                  <Label>
+                    <Label.Text>Next post</Label.Text>
+                    <Label.Icon>
                       <ArrowRight />
-                    </Meta.Icon>
-                  </Meta>
+                    </Label.Icon>
+                  </Label>
                 }
               />
             )}

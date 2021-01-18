@@ -1,10 +1,10 @@
 import React from "react"
 
-export type MetaIconProps = {
+export type LabelIconProps = {
   children: React.ReactNode
 }
 
-const MetaIcon: React.FC<MetaIconProps> = ({ children }) => (
+const LabelIcon: React.FC<LabelIconProps> = ({ children }) => (
   <span
     className="inline-block align-middle w-4 h-4 mr-1"
     style={{ marginTop: -1 }}
@@ -13,4 +13,4 @@ const MetaIcon: React.FC<MetaIconProps> = ({ children }) => (
   </span>
 )
 
-export default MetaIcon
+export default LabelIcon

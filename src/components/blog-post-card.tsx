@@ -21,18 +21,20 @@ type BlogPostProps = {
     }
   }
   featured?: boolean
-  meta?: React.ReactNode
+  label?: React.ReactNode
 }
 
-const BlogPost: React.FC<BlogPostProps> = ({ data, featured, meta }) => {
+const BlogPost: React.FC<BlogPostProps> = ({ data, featured, label }) => {
   const {
     fields: { slug },
     frontmatter: { date, description, image, title },
   } = data
-  const header = <Card.Header heading={title} meta={meta} featured={featured} />
+  const header = (
+    <Card.Header heading={title} label={label} featured={featured} />
+  )
   const footer = (
     <div className="flex items-center justify-between">
-      <div className="text-gray-700">{date}</div>
+      <div className="text-gray-700">{date} 7 min read</div>
       <ReadMore />
     </div>
   )

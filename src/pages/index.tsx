@@ -4,13 +4,12 @@ import { FluidObject } from "gatsby-image"
 
 import LandingLayout from "../layouts/landing"
 import SEO from "../components/seo"
-import Hero from "../components/hero"
 import Container from "../components/container"
 import BlogPostCard from "../components/blog-post-card"
 import PageCard from "../components/page-card"
 import CTACard from "../components/cta-card"
 import CTAText from "../components/cta-text"
-import Meta from "../components/meta/meta"
+import Label from "../components/label/label"
 import routes from "../common/routes"
 
 type DataProps = {
@@ -68,13 +67,13 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
       <Container className="max-w-3xl my-8 grid gap-6 grid-cols-1 md:grid-cols-2">
         {edges.map(({ node }, index) => {
           const mdx = node.childMdx
-          const meta = index === 0 && <Meta text="Latest" />
+          const label = index === 0 && <Label text="Latest" />
 
           return (
             <BlogPostCard
               key={mdx.id}
               data={mdx}
-              meta={meta}
+              label={label}
               featured={index === 0}
             />
           )
