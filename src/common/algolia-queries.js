@@ -8,11 +8,13 @@ const query = `
           id
           frontmatter {
             title
+            date
             description
           }
           fields {
             slug
           }
+          timeToRead
         }
       }
     }
@@ -32,6 +34,7 @@ const queries = [
     query,
     transformer: ({ data }) => data.allMdx.edges.map(mdxToAlgoliaRecord),
     indexName,
+    settings: { searchableAttributes: ["title", "description", "slug"] },
   },
 ]
 
