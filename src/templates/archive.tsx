@@ -21,6 +21,7 @@ type DataProps = {
             description: string
             title: string
           }
+          timeToRead
         }
       }
     }[]
@@ -80,15 +81,7 @@ export const query = graphql`
       edges {
         node {
           childMdx {
-            id
-            fields {
-              slug
-            }
-            frontmatter {
-              date(formatString: "MMM DD, YYYY")
-              description
-              title
-            }
+            ...BlogPost
           }
         }
       }

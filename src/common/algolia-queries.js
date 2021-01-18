@@ -1,4 +1,4 @@
-const indexName = process.env.ALGOLIA_INDEX_NAME
+const indexName = process.env.GATSBY_ALGOLIA_INDEX_NAME
 
 const query = `
   {
@@ -6,24 +6,29 @@ const query = `
       edges {
         node {
           id
-          frontmatter {
-            title
-            description
-          }
           fields {
             slug
           }
+          frontmatter {
+            date(formatString: "MMM D, YYYY")
+            description
+            title
+          }
+          timeToRead
         }
       }
     }
   }
 `
 
-const mdxToAlgoliaRecord = ({ node: { id, frontmatter, fields } }) => {
+const mdxToAlgoliaRecord = ({
+  node: { id, fields, frontmatter, timeToRead },
+}) => {
   return {
     objectID: id,
-    ...frontmatter,
+    timeToRead,
     ...fields,
+    ...frontmatter,
   }
 }
 
@@ -32,6 +37,7 @@ const queries = [
     query,
     transformer: ({ data }) => data.allMdx.edges.map(mdxToAlgoliaRecord),
     indexName,
+    settings: { searchableAttributes: ["title", "description", "slug"] },
   },
 ]
 

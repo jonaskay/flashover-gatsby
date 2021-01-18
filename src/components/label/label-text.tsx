@@ -1,11 +1,11 @@
 import React from "react"
 
-export type MetaTextProps = {
+export type LabelTextProps = {
   children: React.ReactNode
 }
 
-const MetaText: React.FC<MetaTextProps> = ({ children }) => (
+const LabelText: React.FC<LabelTextProps> = ({ children }) => (
   <span className="inline-block align-middle">{children}</span>
 )
 
-export default MetaText
+export default LabelText

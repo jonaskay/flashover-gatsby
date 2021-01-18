@@ -4,6 +4,7 @@ import { Link } from "gatsby"
 import CardBody, { CardBodyProps } from "./card-body"
 import CardHeader, { CardHeaderProps } from "./card-header"
 import CardHeading, { CardHeadingProps } from "./card-heading"
+import CardMeta, { CardMetaProps } from "./card-meta"
 
 const THEMES = {
   primary: {
@@ -27,6 +28,7 @@ type CardComponent = React.FC<CardProps> & {
   Body: React.FC<CardBodyProps>
   Header: React.FC<CardHeaderProps>
   Heading: React.FC<CardHeadingProps>
+  Meta: React.FC<CardMetaProps>
 }
 
 const Card: CardComponent = ({ children, columns, theme, to }) => {
@@ -50,5 +52,6 @@ const Card: CardComponent = ({ children, columns, theme, to }) => {
 Card.Body = CardBody
 Card.Header = CardHeader
 Card.Heading = CardHeading
+Card.Meta = CardMeta
 
 export default Card

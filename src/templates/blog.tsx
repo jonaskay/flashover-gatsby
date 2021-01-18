@@ -2,9 +2,6 @@ import React from "react"
 import { graphql, PageProps } from "gatsby"
 
 import PostLayout from "../layouts/post"
-import Navbar from "../components/navbar"
-import Article from "../components/article/article"
-import CTASection from "../components/cta-section"
 import routes from "../common/routes"
 
 type DataProps = {
@@ -19,6 +16,7 @@ type DataProps = {
       shortTitle: string
       title: string
     }
+    timeToRead: number
   }
 }
 
@@ -28,6 +26,7 @@ const BlogTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       body,
       fields: { slug },
       frontmatter: { title, shortTitle, description, date },
+      timeToRead,
     },
   } = data
 
@@ -36,6 +35,7 @@ const BlogTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       title={title}
       description={description}
       date={date}
+      timeToRead={timeToRead}
       body={body}
       path={slug}
       breadcrumbs={[
@@ -51,15 +51,10 @@ export default BlogTemplate
 export const query = graphql`
   query($slug: String!) {
     mdx(fields: { slug: { eq: $slug } }) {
+      ...BlogPost
       body
-      fields {
-        slug
-      }
       frontmatter {
-        date(formatString: "MMM DD, YYYY")
-        description
         shortTitle
-        title
       }
     }
   }

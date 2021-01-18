@@ -9,7 +9,7 @@ const CTACard: React.FC = () => (
     <Card.Body
       align="center"
       justify="center"
-      header={<Card.Heading>Subscribe to updates</Card.Heading>}
+      header={<Card.Header heading={"Subscribe to updates"} />}
     >
       <div className="mb-2">
         Subscribe by <RSSLink />
