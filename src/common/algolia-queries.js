@@ -5,19 +5,30 @@ const query = `
     allMdx {
       edges {
         node {
-          ...BlogPost
+          id
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMM D, YYYY")
+            description
+            title
+          }
+          timeToRead
         }
       }
     }
   }
 `
 
-const mdxToAlgoliaRecord = ({ node: { id, frontmatter, fields } }) => {
+const mdxToAlgoliaRecord = ({
+  node: { id, fields, frontmatter, timeToRead },
+}) => {
   return {
     objectID: id,
     timeToRead,
-    ...frontmatter,
     ...fields,
+    ...frontmatter,
   }
 }
 
