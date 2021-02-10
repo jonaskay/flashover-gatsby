@@ -13,6 +13,7 @@ type BreadcrumbsProps = {
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ className, items }) => (
   <nav
+    aria-label="breadcrumb"
     className={`mb-2 flex flex-wrap items-center justify-center text-lg sm:text-xl ${
       className ? className : ""
     }`}
