@@ -1,9 +1,11 @@
+@import "./anchor.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
-  input[type=text] {
+  input[type="text"] {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
@@ -71,48 +73,8 @@
     @apply mt-10 mb-4 text-2xl font-semibold text-indigo-600;
   }
 
-  .article .anchor.before {
-    position: absolute;
-  }
-
-  .article h2 > .anchor.before, .article h3 > .anchor.before {
-    @apply -ml-4 w-4;
-  }
-
-  .article h2 > .anchor.before {
-    top: 11px;
-  }
-
-  .article h3 > .anchor.before {
-    top: 9px;
-  }
-
-  @screen sm {
-    .article h2 > .anchor.before {
-      @apply w-6 -ml-7;
-      top: 9px;
-    }
-
-    .article h3 > .anchor.before {
-      @apply w-5 -ml-6;
-      top: 6px;
-    }
-  }
-
-  .article .anchor.before > svg {
-    visibility: hidden;
-  }
-
-  .article h2:hover > .anchor.before > svg, .article h3:hover > .anchor.before > svg, .article .anchor.before:hover > svg {
-    visibility: visible;
-  }
-
-  .article .anchor.before > svg path {
-    stroke-linecap: round;
-    stroke-linejoin: round;
-  }
-
-  .article p, .article li {
+  .article p,
+  .article li {
     @apply text-lg;
   }
 
@@ -120,7 +82,8 @@
     @apply my-4;
   }
 
-  .article ul, .article ol {
+  .article ul,
+  .article ol {
     @apply ml-8;
   }
 
@@ -136,7 +99,8 @@
     list-style-type: decimal;
   }
 
-  .article ul > li, .article ol > li {
+  .article ul > li,
+  .article ol > li {
     @apply my-2;
   }
 
