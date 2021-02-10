@@ -1,12 +1,12 @@
-const MDX_SOURCES = ["blog", "archive"]
-
 const createMdxPages = async (
   source,
   component,
-  createPage,
+  actions,
   graphql,
   reporter
 ) => {
+  const { createPage } = actions
+
   const { data } = await graphql(
     `
       query($source: String!) {
@@ -63,4 +63,4 @@ const createMdxPages = async (
   })
 }
 
-module.exports = { createMdxPages, MDX_SOURCES }
+module.exports = createMdxPages

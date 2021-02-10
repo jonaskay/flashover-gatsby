@@ -6,28 +6,31 @@ import PaginationLink from "./pagination-link"
 
 type PaginationProps = {
   basePath: string
-  currentPage: number
+  currentIndex: number
   pageCount: number
 }
 
 const Pagination: React.FC<PaginationProps> = ({
   basePath,
-  currentPage,
+  currentIndex,
   pageCount,
 }) => {
-  const pagePath = (pageNumber: number): string => {
-    if (pageNumber === 1) {
+  const paginationPath = (index: number): string => {
+    if (index === 1) {
       return basePath
     }
 
-    return `${basePath}/page/${pageNumber}`
+    return `${basePath}/page/${index}`
   }
 
   return (
     <nav aria-label="page navigation">
       <Container className="my-8 sm:my-16 text-center text-lg">
-        {currentPage > 1 && (
-          <PaginationLink to={pagePath(currentPage - 1)} direction="prev" />
+        {currentIndex > 1 && (
+          <PaginationLink
+            to={paginationPath(currentIndex - 1)}
+            direction="prev"
+          />
         )}
         {new Array(pageCount).fill(undefined).map((_, index) => {
           const pageNumber = index + 1
@@ -35,7 +38,7 @@ const Pagination: React.FC<PaginationProps> = ({
           return (
             <Link
               key={pageNumber}
-              to={pagePath(pageNumber)}
+              to={paginationPath(pageNumber)}
               className="inline-block align-middle px-2 w-7 text-indigo-600 hover:underline"
               activeClassName="active"
             >
@@ -43,8 +46,11 @@ const Pagination: React.FC<PaginationProps> = ({
             </Link>
           )
         })}
-        {pageCount > currentPage && (
-          <PaginationLink to={pagePath(currentPage + 1)} direction="next" />
+        {pageCount > currentIndex && (
+          <PaginationLink
+            to={paginationPath(currentIndex + 1)}
+            direction="next"
+          />
         )}
       </Container>
     </nav>

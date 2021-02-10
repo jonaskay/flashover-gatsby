@@ -1,6 +1,6 @@
 require("dotenv").config()
 
-const { MDX_SOURCES } = require("./src/common/create-mdx-pages")
+const { MDX_SOURCES } = require("./src/common/sources")
 const RepositoryParser = require("./src/common/repository-parser")
 const feedBuilder = require("./src/common/feed-builder")
 const routes = require("./src/common/routes")
@@ -72,11 +72,11 @@ module.exports = {
         ],
       },
     },
-    ...MDX_SOURCES.map(mdxSource => ({
+    ...MDX_SOURCES.map(({ name }) => ({
       resolve: `gatsby-source-filesystem`,
       options: {
-        name: mdxSource,
-        path: `${__dirname}/src/content/${mdxSource}`,
+        name,
+        path: `${__dirname}/src/content/${name}`,
       },
     })),
     {
