@@ -19,6 +19,7 @@ const PaginationLink: React.FC<PaginationLinkProps> = ({ direction, to }) => (
         viewBox="0 0 24 24"
         stroke="currentColor"
       >
+        <title>Previous</title>
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -33,6 +34,7 @@ const PaginationLink: React.FC<PaginationLinkProps> = ({ direction, to }) => (
         viewBox="0 0 24 24"
         stroke="currentColor"
       >
+        <title>Next</title>
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
