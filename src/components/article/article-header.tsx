@@ -30,7 +30,7 @@ const ArticleHeader: React.FC<ArticleHeaderProps> = ({
         <Link to={path} className="-text-lg text-indigo-600">
           Link to post
         </Link>
-        <div className="float-right text-gray-500">
+        <div className="float-right text-gray-600">
           <ArticleMeta date={date} timeToRead={timeToRead} />
         </div>
       </div>

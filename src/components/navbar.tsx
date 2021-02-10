@@ -6,7 +6,7 @@ import NavbarLink from "./navbar-link"
 
 const Navbar: React.FC = () => (
   <Container className="py-4 sm:py-8">
-    <nav className="text-center flex items-center justify-center sm:justify-end">
+    <nav className="flex items-center justify-center sm:justify-end text-center text-gray-600">
       <NavbarLink to={routes.root}>Home</NavbarLink>
       <NavbarLink to={routes.archive}>Archive</NavbarLink>
       <NavbarLink to={routes.search} className="inline-block w-5">

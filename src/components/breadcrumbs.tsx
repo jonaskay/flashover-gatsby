@@ -49,7 +49,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ className, items }) => (
             </Link>
           ) : (
             <span
-              className="text-gray-500"
+              className="text-gray-600"
               dangerouslySetInnerHTML={{ __html: item.text }}
             />
           )}

@@ -10,10 +10,8 @@ type NavbarLinkProps = {
 const NavbarLink: React.FC<NavbarLinkProps> = ({ children, className, to }) => (
   <Link
     to={to}
-    className={`mx-4 text-lg text-gray-500 hover:text-gray-900 ${
-      className ? className : ""
-    }`}
-    activeClassName="text-gray-900"
+    className={`mx-4 text-lg hover:text-black ${className ? className : ""}`}
+    activeClassName="text-black"
   >
     {children}
   </Link>
