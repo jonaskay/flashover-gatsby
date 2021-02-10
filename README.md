@@ -41,6 +41,14 @@ To run the tests in watch mode, run
 
     $ yarn test --watch
 
+End-to-end tests are located in [`cypress/e2e`](cypress/e2e). You can run them by running
+
+    $ yarn test:e2e
+
+To run the e2e tests in CI mode, run
+
+    $ yarn test:e2e:ci
+
 ## Deployment
 
 The site is deployed using [Netlify](https://www.netlify.com/). Deploy config can be found in [`.netlify.toml`](.netlify.toml).

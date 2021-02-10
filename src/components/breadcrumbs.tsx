@@ -13,6 +13,7 @@ type BreadcrumbsProps = {
 
 const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ className, items }) => (
   <nav
+    aria-label="breadcrumb"
     className={`mb-2 flex flex-wrap items-center justify-center text-lg sm:text-xl ${
       className ? className : ""
     }`}
@@ -48,7 +49,7 @@ const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ className, items }) => (
             </Link>
           ) : (
             <span
-              className="text-gray-500"
+              className="text-gray-600"
               dangerouslySetInnerHTML={{ __html: item.text }}
             />
           )}

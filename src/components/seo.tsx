@@ -72,7 +72,7 @@ const SEO: React.FC<SEOProps> = ({
   return (
     <Helmet
       htmlAttributes={{
-        htmlLang,
+        lang: htmlLang,
       }}
       defaultTitle={defaultTitle}
       title={title}

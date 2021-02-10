@@ -14,7 +14,7 @@ type LabelComponent = React.FC<LabelProps> & {
 }
 
 const Label: LabelComponent = ({ children, text }) => (
-  <div className="text-sm text-indigo-400 font-sans tracking-wider uppercase">
+  <div className="text-sm text-indigo-600 font-sans tracking-wider uppercase">
     {children && children}
     {text && <LabelText>{text}</LabelText>}
   </div>
