@@ -1,21 +1,13 @@
 const path = require("path")
-const { createFilePath } = require("gatsby-source-filesystem")
 
-const { MDX_SOURCES } = require("./src/common/sources")
+const { isSourceableMdxFile, MDX_SOURCES } = require("./src/common/sources")
+const createMdxFields = require("./src/common/create-mdx-fields")
 const createMdxPages = require("./src/common/create-mdx-pages")
 const createPaginationPages = require("./src/common/create-pagination-pages")
-const FilenameParser = require("./src/common/filename-parser")
-const routes = require("./src/common/routes")
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
-  if (node.internal.type === "Mdx") {
-    const filename = createFilePath({ node, getNode })
-    const title = new FilenameParser(filename).title()
-    const slug = `/posts/${title}`
-
-    createNodeField({ name: "slug", node, value: slug })
+  if (isSourceableMdxFile(node, getNode)) {
+    createMdxFields(node, actions, getNode)
   }
 }
 

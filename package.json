@@ -29,6 +29,7 @@
     "gatsby-remark-images": "^3.9.0",
     "gatsby-source-filesystem": "^2.5.0",
     "gatsby-transformer-sharp": "^2.6.0",
+    "joi": "^17.4.0",
     "postcss": "^8.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
@@ -62,7 +63,6 @@
     "cy:run": "cypress run",
     "test:e2e": "start-server-and-test develop http://localhost:8000 cy:open",
     "test:e2e:ci": "start-server-and-test develop http://localhost:8000 cy:run"
-
   },
   "repository": {
     "type": "git",
