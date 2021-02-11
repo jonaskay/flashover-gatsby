@@ -3,208 +3,69 @@ const feedBuilder = require("./feed-builder")
 describe("feedOptions", () => {
   it("returns the feed options when data is valid", () => {
     const data = {
-      siteMetadata: {
-        title: "foo",
-        description: "bar",
-        url: "baz",
-        author: "qux",
-      },
+      title: "foo",
+      description: "bar",
+      author: "baz",
+      url: "qux",
     }
 
     expect(feedBuilder.feedOptions(data)).toEqual({
       title: "foo",
       description: "bar",
-      site_url: "baz",
-      author: "qux",
+      author: "baz",
+      site_url: "qux",
     })
   })
 
-  it("throws an error when siteMetadata is undefined", () => {
+  it("throws an error when data is invalid", () => {
     const data = {
-      siteMetadata: undefined,
+      title: undefined,
+      description: undefined,
+      author: undefined,
+      url: undefined,
     }
 
-    expect(() => feedBuilder.feedOptions(data)).toThrow(
-      "siteMetadata is undefined"
-    )
-  })
-
-  it("throws an error when title is undefined", () => {
-    const data = {
-      siteMetadata: {
-        title: undefined,
-        description: "bar",
-        url: "baz",
-        author: "qux",
-      },
-    }
-
-    expect(() => feedBuilder.feedOptions(data)).toThrow(
-      "siteMetadata.title is undefined"
-    )
-  })
-
-  it("throws an error when description is undefined", () => {
-    const data = {
-      siteMetadata: {
-        title: "foo",
-        description: undefined,
-        url: "baz",
-        author: "qux",
-      },
-    }
-
-    expect(() => feedBuilder.feedOptions(data)).toThrow(
-      "siteMetadata.description is undefined"
-    )
-  })
-
-  it("throws an error when url is undefined", () => {
-    const data = {
-      siteMetadata: {
-        title: "foo",
-        description: "bar",
-        url: undefined,
-        author: "qux",
-      },
-    }
-
-    expect(() => feedBuilder.feedOptions(data)).toThrow(
-      "siteMetadata.url is undefined"
-    )
-  })
-
-  it("throws an error when author is undefined", () => {
-    const data = {
-      siteMetadata: {
-        title: "foo",
-        description: "bar",
-        url: "baz",
-        author: undefined,
-      },
-    }
-
-    expect(() => feedBuilder.feedOptions(data)).toThrow(
-      "siteMetadata.author is undefined"
-    )
+    expect(() => feedBuilder.feedOptions(data)).toThrow("is required")
   })
 })
 
 describe("itemOptions", () => {
-  const validSiteData = {
-    siteMetadata: {
-      url: "foo",
+  const url = "1337"
+
+  const data = {
+    childMdx: {
+      frontmatter: {
+        title: "foo",
+        description: "bar",
+        date: "baz",
+      },
+      fields: {
+        slug: "qux",
+      },
+      html: "lorem ipsum",
     },
   }
 
-  const validFrontmatterData = {
-    title: "baz",
-    description: "qux",
-    date: "quux",
-  }
-
-  const validMdxData = {
-    fields: {
-      slug: "bar",
-    },
-    frontmatter: validFrontmatterData,
-    html: "quuz",
-  }
-
-  const validItemData = {
-    childMdx: validMdxData,
-  }
-
-  it("returns the item options when site data and item data are valid", () => {
-    expect(feedBuilder.itemOptions(validSiteData, validItemData)).toEqual({
-      title: "baz",
-      description: "qux",
-      url: "foobar",
-      guid: "foobar",
-      date: "quux",
-      custom_elements: [{ "content:encoded": "quuz" }],
+  it("returns the item options when site url and item data are valid", () => {
+    expect(feedBuilder.itemOptions(url, data)).toEqual({
+      url: "1337qux",
+      guid: "1337qux",
+      date: "baz",
+      title: "foo",
+      description: "bar",
+      custom_elements: [{ "content:encoded": "lorem ipsum" }],
     })
   })
 
-  it("throws an error when site data is invalid", () => {
-    const withoutSiteMetadata = { siteMetadata: undefined }
-    const withoutUrl = { siteMetadata: { url: undefined } }
-
-    expect(() =>
-      feedBuilder.itemOptions(withoutSiteMetadata, validItemData)
-    ).toThrow("siteMetadata is undefined")
-
-    expect(() => feedBuilder.itemOptions(withoutUrl, validItemData)).toThrow(
-      "siteMetadata.url is undefined"
+  it("throws an error when site url is empty", () => {
+    expect(() => feedBuilder.itemOptions("", data)).toThrow(
+      `"url" is not allowed to be empty`
     )
   })
 
   it("throws an error when item data is invalid", () => {
-    const withoutChildMdx = { childMdx: undefined }
-    const withoutFields = {
-      childMdx: { ...validMdxData, fields: undefined },
-    }
-    const withoutSlug = {
-      childMdx: { ...validMdxData, fields: { slug: undefined } },
-    }
-    const withoutFrontmatter = {
-      childMdx: { ...validMdxData, frontmatter: undefined },
-    }
-    const withoutTitle = {
-      childMdx: {
-        ...validMdxData,
-        frontmatter: { ...validFrontmatterData, title: undefined },
-      },
-    }
-    const withoutDescription = {
-      childMdx: {
-        ...validMdxData,
-        frontmatter: { ...validFrontmatterData, description: undefined },
-      },
-    }
-    const withoutDate = {
-      childMdx: {
-        ...validMdxData,
-        frontmatter: { ...validFrontmatterData, date: undefined },
-      },
-    }
-    const withoutHtml = {
-      childMdx: {
-        ...validMdxData,
-        html: undefined,
-      },
-    }
-
-    expect(() =>
-      feedBuilder.itemOptions(validSiteData, withoutChildMdx)
-    ).toThrow("childMdx is undefined")
-
-    expect(() => feedBuilder.itemOptions(validSiteData, withoutFields)).toThrow(
-      "childMdx.fields is undefined"
-    )
-
-    expect(() => feedBuilder.itemOptions(validSiteData, withoutSlug)).toThrow(
-      "childMdx.fields.slug is undefined"
-    )
-
-    expect(() =>
-      feedBuilder.itemOptions(validSiteData, withoutFrontmatter)
-    ).toThrow("childMdx.frontmatter is undefined")
-
-    expect(() => feedBuilder.itemOptions(validSiteData, withoutTitle)).toThrow(
-      "childMdx.frontmatter.title is undefined"
-    )
-
-    expect(() =>
-      feedBuilder.itemOptions(validSiteData, withoutDescription)
-    ).toThrow("childMdx.frontmatter.description is undefined")
-
-    expect(() => feedBuilder.itemOptions(validSiteData, withoutDate)).toThrow(
-      "childMdx.frontmatter.date is undefined"
-    )
-
-    expect(() => feedBuilder.itemOptions(validSiteData, withoutHtml)).toThrow(
-      "childMdx.html is undefined"
+    expect(() => feedBuilder.itemOptions(url, { foo: "bar" })).toThrow(
+      `"data.childMdx" is required`
     )
   })
 })

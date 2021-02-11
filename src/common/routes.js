@@ -1,6 +1,6 @@
 module.exports = {
-  archive: "/archive",
-  root: "/",
-  rss: "/feed.xml",
-  search: "/search",
+  ARCHIVE: "/archive",
+  ROOT: "/",
+  RSS: "/feed.xml",
+  SEARCH: "/search",
 }
