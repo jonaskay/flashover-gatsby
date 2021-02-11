@@ -1,4 +1,6 @@
-require("dotenv").config()
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 const { MDX_SOURCES } = require("./src/common/sources")
 const RepositoryParser = require("./src/common/repository-parser")

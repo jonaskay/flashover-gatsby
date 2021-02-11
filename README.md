@@ -17,6 +17,12 @@ To install dependencies, run
 
     $ yarn install
 
+### Environment variables
+
+Add a `.env.development` file to the project root to enable environment variables for development. See [`.env.example`](.env.example) for the required environment variables.
+
+If you want to test out the production build of the site, you need to also add a `.env.production` file.
+
 ## Useful commands
 
 To start the development server, run
