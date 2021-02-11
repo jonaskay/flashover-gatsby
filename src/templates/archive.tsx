@@ -60,7 +60,7 @@ const ArchiveTemplate: React.FC<PageProps<DataProps, PageContextProps>> = ({
         })}
       </Container>
       <Pagination
-        basePath={routes.archive}
+        basePath={routes.ARCHIVE}
         currentIndex={currentIndex}
         pageCount={pageCount}
       />

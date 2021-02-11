@@ -56,7 +56,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
     <LandingLayout
       title={
         <Link
-          to={routes.root}
+          to={routes.ROOT}
           className="text-indigo-600 hover:text-indigo-500"
         >
           {title}
@@ -83,7 +83,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
           data={{
             description:
               "I wrote a blog post every week for 2 years. You can find those posts here.",
-            path: routes.archive,
+            path: routes.ARCHIVE,
             title: "Weekly blog (2018-2020)",
           }}
           footer={<CTAText>Go to archive</CTAText>}

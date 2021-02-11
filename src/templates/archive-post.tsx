@@ -70,8 +70,8 @@ const ArchivePostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       body={body}
       path={slug}
       breadcrumbs={[
-        { text: "Flashover", to: routes.root },
-        { text: "Archive", to: routes.archive },
+        { text: "Flashover", to: routes.ROOT },
+        { text: "Archive", to: routes.ARCHIVE },
         { text: `&hellip;` },
       ]}
     >

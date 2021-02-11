@@ -33,7 +33,7 @@ const SiteLayout: React.FC<SiteLayoutProps> = ({
           </Link>
         }
         subtitle={subtitle}
-        breadcrumbs={[{ text: "Flashover", to: routes.root }, { text: title }]}
+        breadcrumbs={[{ text: "Flashover", to: routes.ROOT }, { text: title }]}
         background="bg-gray-100"
       />
       {children}

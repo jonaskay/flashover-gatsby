@@ -1,4 +1,6 @@
-require("dotenv").config()
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 const { MDX_SOURCES } = require("./src/common/sources")
 const RepositoryParser = require("./src/common/repository-parser")
@@ -9,8 +11,8 @@ module.exports = {
   siteMetadata: {
     title: `Flashover`,
     description: `Blog posts about the technical and non-technical work in the software industry`,
-    image: "/images/default.jpg",
-    url: "https://www.flashover.blog",
+    image: `/images/default.jpg`,
+    url: `https://www.flashover.blog`,
     author: `@joonaskykkanen`,
     repository: new RepositoryParser(
       process.env.npm_package_repository_url
@@ -43,20 +45,16 @@ module.exports = {
             }
           }
         `,
-        setup: ({ query: { site } }) => feedBuilder.feedOptions(site),
+        setup: ({ query: { site } }) =>
+          feedBuilder.feedOptions(site.siteMetadata),
         feeds: [
           {
-            serialize: ({ query: { site, allFile } }) => {
-              return allFile.edges.map(({ node }) =>
-                feedBuilder.itemOptions(site, node)
-              )
-            },
             query: `
-              {
-                allFile(
-                  filter: { sourceInstanceName: { eq: "blog" } }
-                  sort: { fields: [name], order: DESC }
-                  limit: 10
+            {
+              allFile(
+                filter: { sourceInstanceName: { eq: "blog" } }
+                sort: { fields: [name], order: DESC }
+                limit: 10
                 ) {
                   edges {
                     node {
@@ -76,7 +74,14 @@ module.exports = {
                 }
               }
             `,
-            output: routes.rss,
+            serialize: ({ query: { site, allFile } }) => {
+              const { url } = site.siteMetadata
+
+              return allFile.edges.map(({ node }) =>
+                feedBuilder.itemOptions(url, node)
+              )
+            },
+            output: routes.RSS,
           },
         ],
       },
