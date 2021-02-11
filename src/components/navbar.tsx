@@ -7,9 +7,9 @@ import NavbarLink from "./navbar-link"
 const Navbar: React.FC = () => (
   <Container className="py-4 sm:py-8">
     <nav className="flex items-center justify-center sm:justify-end text-center text-gray-600">
-      <NavbarLink to={routes.root}>Home</NavbarLink>
-      <NavbarLink to={routes.archive}>Archive</NavbarLink>
-      <NavbarLink to={routes.search} className="inline-block w-5">
+      <NavbarLink to={routes.ROOT}>Home</NavbarLink>
+      <NavbarLink to={routes.ARCHIVE}>Archive</NavbarLink>
+      <NavbarLink to={routes.SEARCH} className="inline-block w-5">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"

@@ -39,7 +39,7 @@ const BlogPostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       body={body}
       path={slug}
       breadcrumbs={[
-        { text: "Flashover", to: routes.root },
+        { text: "Flashover", to: routes.ROOT },
         { text: shortTitle },
       ]}
     />

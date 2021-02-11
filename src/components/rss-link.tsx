@@ -26,7 +26,7 @@ const RSSLink: React.FC = () => {
 
   return (
     <a
-      href={data.site.siteMetadata.url + routes.rss}
+      href={data.site.siteMetadata.url + routes.RSS}
       className="text-indigo-600 font-semibold"
     >
       RSS
