@@ -17,8 +17,8 @@ describe("Pagination tests", () => {
     cy.get("main")
       .findByLabelText("page navigation")
       .within(() => {
-        cy.get("a").findByText("1").should("not.have.class", "active")
         cy.get("a").findByText("2").should("have.class", "active")
+        cy.get("a").findByText("1").should("not.have.class", "active")
         cy.get("a").findByTitle("Previous").parent().click()
       })
 
