@@ -47,7 +47,7 @@ type DataProps = {
   }
 }
 
-const WeeklyTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
+const ArchivePostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const {
     post: {
       body,
@@ -112,20 +112,20 @@ const WeeklyTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   )
 }
 
-export default WeeklyTemplate
+export default ArchivePostTemplate
 
 export const query = graphql`
-  query($slug: String!, $next: String, $previous: String) {
+  query($slug: String!, $nextSlug: String, $previousSlug: String) {
     post: mdx(fields: { slug: { eq: $slug } }) {
       ...BlogPost
       body
     }
 
-    next: mdx(id: { eq: $next }) {
+    next: mdx(fields: { slug: { eq: $nextSlug } }) {
       ...BlogPost
     }
 
-    previous: mdx(id: { eq: $previous }) {
+    previous: mdx(fields: { slug: { eq: $previousSlug } }) {
       ...BlogPost
     }
   }

@@ -1,138 +1,38 @@
 const path = require("path")
-const { createFilePath } = require("gatsby-source-filesystem")
 
-const FilenameParser = require("./src/common/filename-parser")
-const routes = require("./src/common/routes")
+const { isSourceableMdxFile, MDX_SOURCES } = require("./src/common/sources")
+const createMdxFields = require("./src/common/create-mdx-fields")
+const createMdxPages = require("./src/common/create-mdx-pages")
+const createPaginationPages = require("./src/common/create-pagination-pages")
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
-
-  if (node.internal.type === "Mdx") {
-    const filename = createFilePath({ node, getNode })
-    const title = new FilenameParser(filename).title()
-    const slug = `/posts/${title}`
-
-    createNodeField({ name: "slug", node, value: slug })
+  if (isSourceableMdxFile(node, getNode)) {
+    createMdxFields(node, actions, getNode)
   }
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
-  const createPagesFromFiles = (files, template) => {
-    const { createPage } = actions
+  for (mdxSource of MDX_SOURCES) {
+    const source = mdxSource.name
 
-    files.forEach(file => {
-      const { node, next, previous } = file
-      const { slug } = node.childMdx.fields
+    await createMdxPages(
+      source,
+      path.resolve(
+        path.join(__dirname, "src", "templates", `${source}-post.tsx`)
+      ),
+      actions,
+      graphql,
+      reporter
+    )
 
-      createPage({
-        path: slug,
-        component: path.resolve(
-          path.join(__dirname, "src", "templates", template)
-        ),
-        context: {
-          next: next && next.childMdx.id,
-          previous: previous && previous.childMdx.id,
-          slug: slug,
-        },
-      })
-    })
-  }
-
-  createPagesForPagination = (items, segment, template) => {
-    const { createPage, createRedirect } = actions
-
-    const itemsPerPage = 18
-    const pageCount = Math.ceil(items.length / itemsPerPage)
-
-    for (let i = 0; i < pageCount; i++) {
-      let pathname
-      if (i === 0) {
-        createRedirect({
-          fromPath: `${segment}/page/${i + 1}`,
-          toPath: segment,
-          isPermanent: true,
-        })
-        pathname = segment
-      } else {
-        pathname = `${segment}/page/${i + 1}`
-      }
-
-      createPage({
-        path: pathname,
-        component: path.resolve(
-          path.join(__dirname, "src", "templates", template)
-        ),
-        context: {
-          limit: itemsPerPage,
-          skip: i * itemsPerPage,
-          currentPage: i + 1,
-          pageCount,
-          pathname,
-        },
-      })
+    if (mdxSource.paginated) {
+      await createPaginationPages(
+        source,
+        path.resolve(path.join(__dirname, "src", "templates", `${source}.tsx`)),
+        actions,
+        graphql,
+        reporter
+      )
     }
   }
-
-  const { data } = await graphql(`
-    query {
-      blog: allFile(
-        filter: { sourceInstanceName: { eq: "blog" } }
-        sort: { fields: [name], order: ASC }
-      ) {
-        edges {
-          node {
-            childMdx {
-              fields {
-                slug
-              }
-            }
-          }
-          next {
-            childMdx {
-              id
-            }
-          }
-          previous {
-            childMdx {
-              id
-            }
-          }
-        }
-      }
-
-      archive: allFile(
-        filter: { sourceInstanceName: { eq: "archive" } }
-        sort: { fields: [name], order: ASC }
-      ) {
-        edges {
-          node {
-            childMdx {
-              fields {
-                slug
-              }
-            }
-          }
-          next {
-            childMdx {
-              id
-            }
-          }
-          previous {
-            childMdx {
-              id
-            }
-          }
-        }
-      }
-    }
-  `)
-
-  if (data.errors) {
-    reporter.panicOnBuild(`Errors while loading MDX files`)
-  }
-
-  createPagesFromFiles(data.blog.edges, "blog.tsx")
-  createPagesFromFiles(data.archive.edges, "weekly.tsx")
-
-  createPagesForPagination(data.archive.edges, routes.archive, "archive.tsx")
 }
