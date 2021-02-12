@@ -11,7 +11,7 @@ module.exports = {
   siteMetadata: {
     title: `Flashover`,
     description: `Blog posts about the technical and non-technical work in the software industry`,
-    image: `/images/default.jpg`,
+    image: `/images/electric-pen.jpg`,
     url: `https://www.flashover.blog`,
     author: `@joonaskykkanen`,
     repository: new RepositoryParser(
@@ -134,7 +134,7 @@ module.exports = {
       options: {
         name: `Flashover`,
         short_name: `Flashover`,
-        start_url: `/`,
+        start_url: routes.ROOT,
         background_color: `#4F46E5`,
         theme_color: `#4F46E5`,
         display: `minimal-ui`,

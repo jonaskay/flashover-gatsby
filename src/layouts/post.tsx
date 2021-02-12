@@ -29,7 +29,7 @@ const PostLayout: React.FC<PostLayoutProps> = ({
   title,
 }) => (
   <Layout>
-    <SEO title={title} description={description} path={path} article />
+    <SEO title={title} description={description} path={path} type="article" />
     <div className="bg-white">
       <Navbar />
     </div>
