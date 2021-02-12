@@ -134,7 +134,7 @@ module.exports = {
       options: {
         name: `Flashover`,
         short_name: `Flashover`,
-        start_url: `/`,
+        start_url: routes.ROOT,
         background_color: `#4F46E5`,
         theme_color: `#4F46E5`,
         display: `minimal-ui`,
