@@ -1,50 +1,10 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
-import Image, { FluidObject } from "gatsby-image"
 
 import Container from "./container"
 import FooterLink from "./footer-link"
-
-type Data = {
-  file: {
-    childImageSharp: {
-      fluid: FluidObject
-    }
-  }
-  site: {
-    siteMetadata: {
-      repository: string
-    }
-  }
-}
+import GitHubLink from "./github-link"
 
 const Footer: React.FC = () => {
-  const data: Data = useStaticQuery(graphql`
-    query {
-      file(relativePath: { eq: "github-icon.png" }) {
-        childImageSharp {
-          fluid(maxWidth: 32) {
-            ...GatsbyImageSharpFluid
-          }
-        }
-      }
-      site {
-        siteMetadata {
-          repository
-        }
-      }
-    }
-  `)
-
-  const {
-    file: {
-      childImageSharp: { fluid },
-    },
-    site: {
-      siteMetadata: { repository },
-    },
-  } = data
-
   return (
     <footer>
       <Container className="mt-8 sm:mt-16 pb-8 sm:pb-16 text-center text-lg">
@@ -63,9 +23,7 @@ const Footer: React.FC = () => {
             </FooterLink>
           </ul>
         </div>
-        <a href={repository} className="inline-block w-8">
-          <Image fluid={fluid} alt="GitHub repository" />
-        </a>
+        <GitHubLink />
       </Container>
     </footer>
   )
