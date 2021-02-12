@@ -12,7 +12,7 @@ const CTACard: React.FC = () => (
       header={<Card.Header heading={"Subscribe to updates"} />}
     >
       <div className="mb-2">
-        Subscribe by <RSSLink />
+        Subscribe by <RSSLink>RSS</RSSLink>
       </div>
       <div className="my-4 italic">or</div>
       <div className="mb-4">Join the newsletter</div>

@@ -1,37 +1,53 @@
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
 
-import routes from "../common/routes"
-
-type SiteData = {
-  site: {
-    siteMetadata: {
-      url: string
+type Data = {
+  sitePlugin: {
+    pluginOptions: {
+      feeds: {
+        output: string
+      }[]
     }
   }
 }
 
-const RSSLink: React.FC = () => {
-  const data: SiteData = useStaticQuery(
-    graphql`
-      query {
-        site {
-          siteMetadata {
-            url
+type TestableRSSLinkProps = {
+  children: React.ReactNode
+  data: Data
+}
+
+type RSSLinkProps = {
+  children: React.ReactNode
+}
+
+export const TestableRSSLink: React.FC<TestableRSSLinkProps> = ({
+  children,
+  data,
+}) => {
+  const { feeds } = data.sitePlugin.pluginOptions
+  const { output } = feeds[0]
+
+  return (
+    <Link className="text-blue-700 hover:underline" to={output}>
+      {children}
+    </Link>
+  )
+}
+
+const RSSLink: React.FC<RSSLinkProps> = ({ children }) => {
+  const data: Data = useStaticQuery(graphql`
+    query {
+      sitePlugin(name: { eq: "gatsby-plugin-feed" }) {
+        pluginOptions {
+          feeds {
+            output
           }
         }
       }
-    `
-  )
+    }
+  `)
 
-  return (
-    <a
-      href={data.site.siteMetadata.url + routes.RSS}
-      className="text-indigo-600 font-semibold"
-    >
-      RSS
-    </a>
-  )
+  return <TestableRSSLink data={data}>{children}</TestableRSSLink>
 }
 
 export default RSSLink

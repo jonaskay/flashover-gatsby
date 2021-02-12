@@ -11,7 +11,7 @@ const CTASection: React.FC = () => (
       <SectionHeading align="center">Subscribe to updates</SectionHeading>
       <NewsLetterForm />
       <div className="mt-4 text-lg text-gray-700">
-        Subscribe by <RSSLink />
+        Subscribe by <RSSLink>RSS</RSSLink>
         &nbsp;instead
       </div>
     </Container>
