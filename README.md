@@ -15,7 +15,7 @@ This is my personal blog built with [Gatsby](https://www.gatsbyjs.com/). You can
 
 To install dependencies, run
 
-    $ yarn install
+    $ yarn
 
 ### Environment variables
 
