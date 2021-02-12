@@ -11,7 +11,7 @@ module.exports = {
   siteMetadata: {
     title: `Flashover`,
     description: `Blog posts about the technical and non-technical work in the software industry`,
-    image: `/images/default.jpg`,
+    image: `/images/electric-pen.jpg`,
     url: `https://www.flashover.blog`,
     author: `@joonaskykkanen`,
     repository: new RepositoryParser(

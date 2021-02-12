@@ -24,6 +24,8 @@ describe("Pagination tests", () => {
         cy.get("a").findByTitle("Previous").parent().click()
       })
 
+    cy.get("h2").contains("100th Post")
+
     cy.get("main")
       .findByLabelText("page navigation")
       .within(() => {
