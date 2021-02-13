@@ -39,8 +39,9 @@ const Pagination: React.FC<PaginationProps> = ({
             <Link
               key={pageNumber}
               to={paginationPath(pageNumber)}
-              className="inline-block align-middle px-2 w-7 text-indigo-600 hover:underline"
-              activeClassName="active"
+              className={`inline-block align-middle px-2 w-7 text-indigo-600 hover:underline ${
+                pageNumber === currentIndex ? "active" : "'"
+              }`}
             >
               {pageNumber}
             </Link>
