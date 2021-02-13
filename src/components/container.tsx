@@ -12,7 +12,7 @@ const Container: React.FC<ContainerProps> = ({ as, children, className }) => {
   return (
     <Tag
       className={`container mx-auto px-4 sm:px-8 ${
-        className ? ` ${className}` : ""
+        className ? `${className}` : ""
       }`}
     >
       {children}
