@@ -13,14 +13,14 @@ type TableOfContentsItem = TableOfContentsItemHeading & {
 export type TableOfContentsData = { items: TableOfContentsItem[] }
 
 type TableOfContentsProps = {
-  data: TableOfContentsData
+  data?: TableOfContentsData
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({ data }) => (
   <>
     <h2>Table of contents</h2>
     <ul className="toc">
-      {data.items &&
+      {data &&
         data.items.map(item => (
           <li>
             <Link className="font-bold" to={item.url}>
