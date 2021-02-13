@@ -1,5 +1,6 @@
 import React from "react"
 
+import { TableOfContentsData } from "../components/table-of-contents"
 import { BreadcrumbItems } from "../components/breadcrumbs"
 import Layout from "./layout"
 import SEO from "../components/seo"

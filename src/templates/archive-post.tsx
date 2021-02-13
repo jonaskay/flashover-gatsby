@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 
+import { TableOfContentsData } from "../components/table-of-contents"
 import PostLayout from "../layouts/post"
 import Container from "../components/container"
 import SectionHeading from "../components/section-heading"

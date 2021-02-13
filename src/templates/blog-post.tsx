@@ -1,6 +1,7 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 
+import { TableOfContentsData } from "../components/table-of-contents"
 import PostLayout from "../layouts/post"
 import routes from "../common/routes"
 

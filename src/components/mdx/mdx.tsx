@@ -3,6 +3,7 @@ import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import Code from "./code"
+import { TableOfContentsData } from "../table-of-contents"
 
 const components = {
   code: Code,

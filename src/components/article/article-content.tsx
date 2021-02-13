@@ -2,6 +2,7 @@ import React from "react"
 
 import Container from "../container"
 import MDX from "../mdx/mdx"
+import { TableOfContentsData } from "../table-of-contents"
 
 export type ArticleContentProps = {
   children: string
