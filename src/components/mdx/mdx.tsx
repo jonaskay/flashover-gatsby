@@ -10,11 +10,12 @@ const components = {
 
 type MDXProps = {
   children: string
+  tableOfContents: TableOfContents
 }
 
-const MDX: React.FC<MDXProps> = ({ children }) => (
+const MDX: React.FC<MDXProps> = ({ children, tableOfContents }) => (
   <MDXProvider components={components}>
-    <MDXRenderer>{children}</MDXRenderer>
+    <MDXRenderer tableOfContents={tableOfContents}>{children}</MDXRenderer>
   </MDXProvider>
 )
 

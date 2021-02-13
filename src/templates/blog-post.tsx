@@ -17,6 +17,7 @@ type DataProps = {
       title: string
     }
     timeToRead: number
+    tableOfContents: TableOfContentsData
   }
 }
 
@@ -27,6 +28,7 @@ const BlogPostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       fields: { slug },
       frontmatter: { title, shortTitle, description, date },
       timeToRead,
+      tableOfContents,
     },
   } = data
 
@@ -36,6 +38,7 @@ const BlogPostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       description={description}
       date={date}
       timeToRead={timeToRead}
+      tableOfContents={tableOfContents}
       body={body}
       path={slug}
       breadcrumbs={[
@@ -56,6 +59,7 @@ export const query = graphql`
       frontmatter {
         shortTitle
       }
+      tableOfContents(maxDepth: 3)
     }
   }
 `

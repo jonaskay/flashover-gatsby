@@ -21,6 +21,7 @@ type DataProps = {
       description: string
       title: string
     }
+    tableOfContents: TableOfContentsData
     timeToRead: number
   }
   next?: {
@@ -54,6 +55,7 @@ const ArchivePostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       fields: { slug },
       frontmatter: { title, description, date },
       timeToRead,
+      tableOfContents,
     },
     next,
     previous,
@@ -67,6 +69,7 @@ const ArchivePostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       description={description}
       date={date}
       timeToRead={timeToRead}
+      tableOfContents={tableOfContents}
       body={body}
       path={slug}
       breadcrumbs={[
@@ -119,6 +122,7 @@ export const query = graphql`
     post: mdx(fields: { slug: { eq: $slug } }) {
       ...BlogPost
       body
+      tableOfContents(maxDepth: 3)
     }
 
     next: mdx(fields: { slug: { eq: $nextSlug } }) {
