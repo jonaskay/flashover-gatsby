@@ -10,7 +10,7 @@ const components = {
 
 type MDXProps = {
   children: string
-  tableOfContents: TableOfContents
+  tableOfContents: TableOfContentsData
 }
 
 const MDX: React.FC<MDXProps> = ({ children, tableOfContents }) => (
