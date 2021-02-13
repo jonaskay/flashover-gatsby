@@ -1,5 +1,6 @@
 import React from "react"
 
+import { TableOfContentsData } from "../components/table-of-contents"
 import { BreadcrumbItems } from "../components/breadcrumbs"
 import Layout from "./layout"
 import SEO from "../components/seo"
@@ -12,6 +13,7 @@ type PostLayoutProps = {
   breadcrumbs: BreadcrumbItems
   children?: React.ReactNode
   date: string
+  tableOfContents: TableOfContentsData
   timeToRead: number
   description: string
   path: string
@@ -25,6 +27,7 @@ const PostLayout: React.FC<PostLayoutProps> = ({
   date,
   description,
   path,
+  tableOfContents,
   timeToRead,
   title,
 }) => (
@@ -41,7 +44,9 @@ const PostLayout: React.FC<PostLayoutProps> = ({
         path={path}
         title={title}
       />
-      <Article.Content>{body}</Article.Content>
+      <Article.Content tableOfContents={tableOfContents}>
+        {body}
+      </Article.Content>
     </Article>
     {children}
     <CTASection />

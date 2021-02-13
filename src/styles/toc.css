@@ -1,0 +1,14 @@
+@layer components {
+  ul.toc {
+    list-style-type: none;
+    margin-left: 0;
+  }
+
+  ul.toc > li {
+    @apply my-4;
+  }
+
+  ul.toc > li {
+    @apply leading-normal;
+  }
+}
