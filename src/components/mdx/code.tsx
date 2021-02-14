@@ -1,11 +1,11 @@
 import React from "react"
 
-type CodeProps = {
-  children: React.ReactNode
-}
-
-const Code: React.FC<CodeProps> = ({ children }) => (
-  <code tabIndex={0}>{children}</code>
+const Code: React.FC<any> = props => (
+  <code
+    className="block overflow-x-auto bg-gray-100 p-4 border rounded font-mono"
+    tabIndex={0}
+    {...props}
+  />
 )
 
 export default Code
