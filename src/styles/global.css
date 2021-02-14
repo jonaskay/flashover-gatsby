@@ -1,5 +1,4 @@
 @import "./anchor.css";
-@import "./toc.css";
 
 @tailwind base;
 @tailwind components;
@@ -83,24 +82,14 @@
     @apply my-4;
   }
 
-  .article ul,
   .article ol {
     @apply ml-8;
-  }
-
-  .article ul {
-    list-style-type: disc;
-  }
-
-  .article li > ul {
-    list-style-type: circle;
   }
 
   .article ol {
     list-style-type: decimal;
   }
 
-  .article ul > li,
   .article ol > li {
     @apply my-2;
   }
@@ -111,17 +100,5 @@
 
   .article blockquote p {
     @apply text-xl;
-  }
-
-  .article code {
-    @apply bg-gray-100 px-0.5 py-0.5 border rounded font-mono;
-
-    overflow-x: auto;
-  }
-
-  .article pre > code {
-    @apply p-4;
-
-    display: block;
   }
 }

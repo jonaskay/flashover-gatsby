@@ -19,10 +19,10 @@ type TableOfContentsProps = {
 const TableOfContents: React.FC<TableOfContentsProps> = ({ data }) => (
   <>
     <h2>Table of contents</h2>
-    <ul className="toc">
+    <ul className="list-none">
       {data &&
         data.items.map(item => (
-          <li>
+          <li className="my-4 leading-normal" key={item.url}>
             <Link className="font-bold" to={item.url}>
               {item.title}
             </Link>
