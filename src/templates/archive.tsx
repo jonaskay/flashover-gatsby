@@ -73,7 +73,10 @@ export default ArchiveTemplate
 export const query = graphql`
   query($skip: Int = 0, $limit: Int = 18) {
     allFile(
-      filter: { sourceInstanceName: { eq: "archive" } }
+      filter: {
+        sourceInstanceName: { eq: "archive" }
+        internal: { mediaType: { eq: "text/mdx" } }
+      }
       sort: { fields: [name], order: DESC }
       limit: $limit
       skip: $skip
