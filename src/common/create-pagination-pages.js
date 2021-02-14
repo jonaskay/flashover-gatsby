@@ -13,7 +13,10 @@ const createPaginationPages = async (
     `
       query($source: String!) {
         allFile(
-          filter: { sourceInstanceName: { eq: $source } }
+          filter: {
+            sourceInstanceName: { eq: $source }
+            internal: { mediaType: { eq: "text/mdx" } }
+          }
           sort: { fields: [name], order: ASC }
         ) {
           edges {

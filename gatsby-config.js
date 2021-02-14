@@ -52,7 +52,9 @@ module.exports = {
             query: `
             {
               allFile(
-                filter: { sourceInstanceName: { eq: "blog" } }
+                filter: {
+                  sourceInstanceName: { eq: "blog" }
+                  internal: { mediaType: { eq: "text/mdx" } } }
                 sort: { fields: [name], order: DESC }
                 limit: 10
                 ) {
@@ -98,13 +100,6 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/src/images`,
-      },
-    },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `assets`,
-        path: `${__dirname}/src/content/assets`,
       },
     },
     `gatsby-transformer-sharp`,

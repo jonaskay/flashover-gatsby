@@ -19,7 +19,7 @@ type DataProps = {
       title
     }
   }
-  posts: {
+  allFile: {
     edges: {
       node: {
         childMdx: {
@@ -49,7 +49,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
     site: {
       siteMetadata: { title, description },
     },
-    posts: { edges },
+    allFile: { edges },
   } = data
 
   return (
@@ -104,9 +104,11 @@ export const query = graphql`
         title
       }
     }
-
-    posts: allFile(
-      filter: { sourceInstanceName: { eq: "blog" } }
+    allFile(
+      filter: {
+        sourceInstanceName: { eq: "blog" }
+        internal: { mediaType: { eq: "text/mdx" } }
+      }
       sort: { fields: [name], order: DESC }
     ) {
       edges {
