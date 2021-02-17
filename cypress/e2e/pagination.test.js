@@ -14,7 +14,7 @@ describe("Pagination tests", () => {
         cy.get("a").findByTitle("Next").parent().click()
       })
 
-    cy.get("h2").contains("Most Read Posts of 2019")
+    cy.contains("Most Read Posts of 2019")
 
     cy.get("main")
       .findByLabelText("page navigation")
@@ -24,7 +24,7 @@ describe("Pagination tests", () => {
         cy.get("a").findByTitle("Previous").parent().click()
       })
 
-    cy.get("h2").contains("100th Post")
+    cy.contains("100th Post")
 
     cy.get("main")
       .findByLabelText("page navigation")
