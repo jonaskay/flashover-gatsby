@@ -15,10 +15,10 @@ type DataProps = {
   post: {
     body: string
     fields: {
+      date: string
       slug: string
     }
     frontmatter: {
-      date: string
       description: string
       title: string
     }
@@ -27,10 +27,10 @@ type DataProps = {
   }
   next?: {
     fields: {
+      date: string
       slug: string
     }
     frontmatter: {
-      date: string
       description: string
       title: string
     }
@@ -38,10 +38,10 @@ type DataProps = {
   }
   previous?: {
     fields: {
+      date: string
       slug: string
     }
     frontmatter: {
-      date: string
       description: string
       title: string
     }
@@ -53,8 +53,8 @@ const ArchivePostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const {
     post: {
       body,
-      fields: { slug },
-      frontmatter: { title, description, date },
+      fields: { slug, date },
+      frontmatter: { title, description },
       timeToRead,
       tableOfContents,
     },

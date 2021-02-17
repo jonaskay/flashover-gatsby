@@ -9,10 +9,10 @@ type DataProps = {
   mdx: {
     body: string
     fields: {
+      date: string
       slug: string
     }
     frontmatter: {
-      date: string
       description: string
       shortTitle: string
       title: string
@@ -26,8 +26,8 @@ const BlogPostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const {
     mdx: {
       body,
-      fields: { slug },
-      frontmatter: { title, shortTitle, description, date },
+      fields: { slug, date },
+      frontmatter: { title, shortTitle, description },
       timeToRead,
       tableOfContents,
     },

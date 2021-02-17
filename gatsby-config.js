@@ -62,10 +62,10 @@ module.exports = {
                     node {
                       childMdx {
                         fields {
+                          date
                           slug
                         }
                         frontmatter {
-                          date
                           description
                           title
                         }

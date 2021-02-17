@@ -4,10 +4,10 @@ export const BlogPost = graphql`
   fragment BlogPost on Mdx {
     id
     fields {
+      date(formatString: "MMM D, YYYY")
       slug
     }
     frontmatter {
-      date(formatString: "MMM D, YYYY")
       description
       title
     }

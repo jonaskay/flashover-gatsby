@@ -7,10 +7,10 @@ const query = `
         node {
           id
           fields {
+            date(formatString: "MMM D, YYYY")
             slug
           }
           frontmatter {
-            date(formatString: "MMM D, YYYY")
             description
             title
           }

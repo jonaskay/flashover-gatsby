@@ -8,10 +8,10 @@ import ArticleMeta from "./article-meta"
 type BlogPostProps = {
   data: {
     fields: {
+      date: string
       slug: string
     }
     frontmatter: {
-      date: string
       description: string
       image?: {
         childImageSharp: {
@@ -28,8 +28,8 @@ type BlogPostProps = {
 
 const BlogPost: React.FC<BlogPostProps> = ({ data, featured, label }) => {
   const {
-    fields: { slug },
-    frontmatter: { date, description, image, title },
+    fields: { slug, date },
+    frontmatter: { description, image, title },
     timeToRead,
   } = data
   const header = (
