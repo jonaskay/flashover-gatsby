@@ -14,10 +14,10 @@ type DataProps = {
         childMdx: {
           id: string
           fields: {
+            date: string
             slug: string
           }
           frontmatter: {
-            date: string
             description: string
             title: string
           }
