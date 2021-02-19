@@ -32,7 +32,7 @@ type PageContextProps = {
   currentIndex: number
   limit: number
   pageCount: number
-  path: string
+  slug: string
   skip: number
 }
 
@@ -44,11 +44,11 @@ const ArchiveTemplate: React.FC<PageProps<DataProps, PageContextProps>> = ({
     allFile: { edges },
   } = data
 
-  const { currentIndex, pageCount, path } = pageContext
+  const { currentIndex, pageCount, slug } = pageContext
 
   return (
     <SiteLayout
-      path={path}
+      path={slug}
       title="Archive"
       subtitle="Collection of weekly blog posts written between 2018 and 2020"
     >
