@@ -1,22 +1,35 @@
-a.anchor {
-  float: left;
-  height: 100%;
-  margin-left: -24px;
-  line-height: 1;
-  padding-right: 4px;
-}
+@layer components {
+  a.anchor {
+    float: left;
+    height: 100%;
+    margin-left: -24px;
+    padding-right: 4px;
+  }
 
-a.anchor > svg {
-  display: inline-block;
-  vertical-align: middle;
-  visibility: hidden;
-}
+  h2 > a.anchor {
+    padding-top: 9px;
+  }
 
-h1:hover > a.anchor > svg,
-h2:hover > a.anchor > svg,
-h3:hover > a.anchor > svg,
-h4:hover > a.anchor > svg,
-h5:hover > a.anchor > svg,
-h6:hover > a.anchor > svg {
-  visibility: visible;
+  @screen sm {
+    h2 > a.anchor {
+      padding-top: 11px;
+    }
+  }
+
+  h3 > a.anchor {
+    padding-top: 7px;
+  }
+
+  a.anchor > svg {
+    visibility: hidden;
+  }
+
+  h1:hover > a.anchor > svg,
+  h2:hover > a.anchor > svg,
+  h3:hover > a.anchor > svg,
+  h4:hover > a.anchor > svg,
+  h5:hover > a.anchor > svg,
+  h6:hover > a.anchor > svg {
+    visibility: visible;
+  }
 }
