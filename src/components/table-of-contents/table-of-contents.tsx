@@ -18,12 +18,17 @@ type TableOfContentsProps = {
 }
 
 const TableOfContents: React.FC<TableOfContentsProps> = ({ data }) => (
-  <>
-    <h2>Table of contents</h2>
-    <ul className="list-none">
-      {data && data.items.map(item => <TableOfContentsItem data={item} />)}
-    </ul>
-  </>
+  <nav className="absolute top-0 right-0 max-w-xs h-full -mr-80 pt-4 pl-8 text-sm font-sans">
+    <div className="sticky top-0 pt-4">
+      <h2>Table of contents</h2>
+      <ul className="list-none">
+        {data &&
+          data.items.map(item => (
+            <TableOfContentsItem key={item.url} data={item} />
+          ))}
+      </ul>
+    </div>
+  </nav>
 )
 
 export default TableOfContents

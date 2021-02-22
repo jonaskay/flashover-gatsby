@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { Link } from "gatsby"
+
+import TableOfContentsLink from "./table-of-contents-link"
 
 type Item = {
   title: string
@@ -18,10 +19,8 @@ const TableOfContentsItem: React.FC<TableOfContentsItemProps> = ({ data }) => {
   const toggleIsExpanded = () => setIsExpanded(!isExpanded)
 
   return (
-    <li className="my-4" key={data.url}>
-      <Link className="font-bold" to={data.url}>
-        {data.title}
-      </Link>
+    <li className="my-1" key={data.url}>
+      <TableOfContentsLink to={data.url}>{data.title}</TableOfContentsLink>
       &nbsp;
       {data.items && (
         <>
@@ -32,16 +31,17 @@ const TableOfContentsItem: React.FC<TableOfContentsItemProps> = ({ data }) => {
             ({isExpanded ? "show less" : "show more"})
           </button>
 
-          <div className={`sm:block sm:ml-4 ${isExpanded ? "" : "hidden"}`}>
-            {data.items.map((item, index) => (
-              <span key={item.url}>
-                {index !== 0 && (
-                  <span className="mx-2 text-gray-600">&middot;</span>
-                )}
-                <Link to={item.url}>{item.title}</Link>
-              </span>
-            ))}
-          </div>
+          <ul className={`sm:block sm:ml-4 ${isExpanded ? "" : "hidden"}`}>
+            {data.items.map(item => {
+              return (
+                <li key={item.url} className="my-1">
+                  <TableOfContentsLink to={item.url}>
+                    {item.title}
+                  </TableOfContentsLink>
+                </li>
+              )
+            })}
+          </ul>
         </>
       )}
     </li>

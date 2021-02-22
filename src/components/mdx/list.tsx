@@ -2,7 +2,9 @@ import React from "react"
 
 type ListComponent = React.FC<any> & { Item: React.FC<any> }
 
-const ListItem: React.FC<any> = props => <li className="my-2" {...props} />
+const ListItem: React.FC<any> = props => (
+  <li className="my-2 text-lg" {...props} />
+)
 
 const List: ListComponent = props => (
   <ul className="list-disc ml-8" {...props} />
