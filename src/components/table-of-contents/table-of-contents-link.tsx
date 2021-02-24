@@ -30,7 +30,9 @@ const TableOfContentsLink: React.FC<TableOfContentsLinkProps> = ({
         navigateToHeading(to)
       }}
       className={`text-left ${
-        isActive ? "text-indigo-600 font-bold" : "text-gray-600"
+        isActive
+          ? "text-gray-600 xl:text-indigo-600 xl:font-bold"
+          : "text-gray-600"
       }`}
     >
       {children}

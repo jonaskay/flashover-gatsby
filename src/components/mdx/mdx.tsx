@@ -7,7 +7,6 @@ import List from "./list"
 import Code from "./code"
 import InlineCode from "./inline-code"
 import Link from "./link"
-import { TableOfContentsData } from "../table-of-contents/table-of-contents"
 
 const components = {
   h2: Heading.H2,
@@ -21,12 +20,11 @@ const components = {
 
 type MDXProps = {
   children: string
-  tableOfContents: TableOfContentsData
 }
 
-const MDX: React.FC<MDXProps> = ({ children, tableOfContents }) => (
+const MDX: React.FC<MDXProps> = ({ children }) => (
   <MDXProvider components={components}>
-    <MDXRenderer tableOfContents={tableOfContents}>{children}</MDXRenderer>
+    <MDXRenderer>{children}</MDXRenderer>
   </MDXProvider>
 )
 

@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 
+import TableOfContentsListItem from "./table-of-contents-list-item"
 import TableOfContentsLink from "./table-of-contents-link"
 
 type Item = {
@@ -11,17 +12,24 @@ export type TableOfContentsItemProps = {
   data: Item & {
     items?: Item[]
   }
+  index: number
+  maxIndex: number
 }
 
-const TableOfContentsItem: React.FC<TableOfContentsItemProps> = ({ data }) => {
+const TableOfContentsItem: React.FC<TableOfContentsItemProps> = ({
+  data,
+  index,
+  maxIndex,
+}) => {
   const [isExpanded, setIsExpanded] = useState(false)
 
   const toggleIsExpanded = () => setIsExpanded(!isExpanded)
 
+  const isCollapsed = maxIndex && index > maxIndex
+
   return (
-    <li className="my-1" key={data.url}>
+    <TableOfContentsListItem collapsed={isCollapsed} key={data.url}>
       <TableOfContentsLink to={data.url}>{data.title}</TableOfContentsLink>
-      &nbsp;
       {data.items && (
         <>
           <button
@@ -32,19 +40,24 @@ const TableOfContentsItem: React.FC<TableOfContentsItemProps> = ({ data }) => {
           </button>
 
           <ul className={`sm:block sm:ml-4 ${isExpanded ? "" : "hidden"}`}>
-            {data.items.map(item => {
+            {data.items.map((item, itemIndex) => {
+              const isItemCollapsed = maxIndex && index + itemIndex > maxIndex
+
               return (
-                <li key={item.url} className="my-1">
+                <TableOfContentsListItem
+                  key={item.url}
+                  collapsed={isItemCollapsed}
+                >
                   <TableOfContentsLink to={item.url}>
                     {item.title}
                   </TableOfContentsLink>
-                </li>
+                </TableOfContentsListItem>
               )
             })}
           </ul>
         </>
       )}
-    </li>
+    </TableOfContentsListItem>
   )
 }
 
