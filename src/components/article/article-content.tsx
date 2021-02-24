@@ -8,9 +8,7 @@ export type ArticleContentProps = {
 
 const ArticleContent: React.FC<ArticleContentProps> = ({ children }) => (
   <div className="relative max-w-screen-2xl mx-auto">
-    <Container className="article max-w-2xl px-8 pt-4 pb-16">
-      {children}
-    </Container>
+    <Container className="max-w-2xl px-8 pt-4 pb-16">{children}</Container>
   </div>
 )
 

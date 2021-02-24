@@ -53,6 +53,10 @@
     @apply leading-relaxed;
   }
 
+  .article > *:first-child {
+    @apply mt-4;
+  }
+
   .article strong {
     @apply font-semibold;
   }

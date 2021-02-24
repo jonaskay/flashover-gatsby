@@ -7,6 +7,7 @@ import List from "./list"
 import Code from "./code"
 import InlineCode from "./inline-code"
 import Link from "./link"
+import Wrapper from "./wrapper"
 
 const components = {
   h2: Heading.H2,
@@ -16,6 +17,7 @@ const components = {
   code: Code,
   inlineCode: InlineCode,
   a: Link,
+  wrapper: Wrapper,
 }
 
 type MDXProps = {
