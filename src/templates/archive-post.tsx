@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 
-import { TableOfContentsData } from "../components/table-of-contents"
 import PostLayout from "../layouts/post"
 import Container from "../components/container"
 import SectionHeading from "../components/section-heading"
@@ -10,6 +9,8 @@ import Label from "../components/label/label"
 import ArrowLeft from "../components/arrow-left"
 import ArrowRight from "../components/arrow-right"
 import routes from "../common/routes"
+import Article from "../components/article/article"
+import MDX from "../components/mdx/mdx"
 
 type DataProps = {
   post: {
@@ -22,7 +23,6 @@ type DataProps = {
       description: string
       title: string
     }
-    tableOfContents: TableOfContentsData
     timeToRead: number
   }
   next?: {
@@ -56,7 +56,6 @@ const ArchivePostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
       fields: { slug, date },
       frontmatter: { title, description },
       timeToRead,
-      tableOfContents,
     },
     next,
     previous,
@@ -65,20 +64,23 @@ const ArchivePostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   const columns = next && previous ? "2" : "1"
 
   return (
-    <PostLayout
-      title={title}
-      description={description}
-      date={date}
-      timeToRead={timeToRead}
-      tableOfContents={tableOfContents}
-      body={body}
-      path={slug}
-      breadcrumbs={[
-        { text: "Flashover", to: routes.ROOT },
-        { text: "Archive", to: routes.ARCHIVE },
-        { text: `&hellip;` },
-      ]}
-    >
+    <PostLayout title={title} description={description} path={slug}>
+      <Article>
+        <Article.Header
+          breadcrumbs={[
+            { text: "Flashover", to: routes.ROOT },
+            { text: "Archive", to: routes.ARCHIVE },
+            { text: `&hellip;` },
+          ]}
+          date={date}
+          timeToRead={timeToRead}
+          path={slug}
+          title={title}
+        />
+        <Article.Content>
+          <MDX>{body}</MDX>
+        </Article.Content>
+      </Article>
       <div className="bg-white">
         <Container className="max-w-3xl py-8">
           <SectionHeading align="center">Read more weekly posts</SectionHeading>
@@ -123,7 +125,6 @@ export const query = graphql`
     post: mdx(fields: { slug: { eq: $slug } }) {
       ...BlogPost
       body
-      tableOfContents(maxDepth: 3)
     }
 
     next: mdx(fields: { slug: { eq: $nextSlug } }) {

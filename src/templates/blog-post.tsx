@@ -1,9 +1,13 @@
 import React from "react"
 import { graphql, PageProps } from "gatsby"
 
-import { TableOfContentsData } from "../components/table-of-contents"
 import PostLayout from "../layouts/post"
+import Article from "../components/article/article"
+import TableOfContents, {
+  TableOfContentsData,
+} from "../components/table-of-contents/table-of-contents"
 import routes from "../common/routes"
+import MDX from "../components/mdx/mdx"
 
 type DataProps = {
   mdx: {
@@ -34,19 +38,24 @@ const BlogPostTemplate: React.FC<PageProps<DataProps>> = ({ data }) => {
   } = data
 
   return (
-    <PostLayout
-      title={title}
-      description={description}
-      date={date}
-      timeToRead={timeToRead}
-      tableOfContents={tableOfContents}
-      body={body}
-      path={slug}
-      breadcrumbs={[
-        { text: "Flashover", to: routes.ROOT },
-        { text: shortTitle },
-      ]}
-    />
+    <PostLayout title={title} description={description} path={slug}>
+      <Article>
+        <Article.Header
+          breadcrumbs={[
+            { text: "Flashover", to: routes.ROOT },
+            { text: shortTitle },
+          ]}
+          date={date}
+          timeToRead={timeToRead}
+          path={slug}
+          title={title}
+        />
+        <Article.Content>
+          <TableOfContents data={tableOfContents} />
+          <MDX>{body}</MDX>
+        </Article.Content>
+      </Article>
+    </PostLayout>
   )
 }
 

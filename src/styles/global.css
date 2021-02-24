@@ -53,28 +53,15 @@
     @apply leading-relaxed;
   }
 
-  .article a {
-    @apply text-indigo-600;
-  }
-
-  .article a:hover {
-    text-decoration: underline;
+  .article > *:first-child {
+    @apply mt-4;
   }
 
   .article strong {
     @apply font-semibold;
   }
 
-  .article h2 {
-    @apply mt-12 mb-4 text-3xl sm:text-4xl font-semibold text-indigo-600;
-  }
-
-  .article h3 {
-    @apply mt-10 mb-4 text-2xl font-semibold text-indigo-600;
-  }
-
-  .article p,
-  .article li {
+  .article p {
     @apply text-lg;
   }
 

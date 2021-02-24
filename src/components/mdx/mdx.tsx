@@ -2,26 +2,31 @@ import React from "react"
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
+import Heading from "./heading"
 import List from "./list"
 import Code from "./code"
 import InlineCode from "./inline-code"
-import { TableOfContentsData } from "../table-of-contents"
+import Link from "./link"
+import Wrapper from "./wrapper"
 
 const components = {
+  h2: Heading.H2,
+  h3: Heading.H3,
   ul: List,
   li: List.Item,
   code: Code,
   inlineCode: InlineCode,
+  a: Link,
+  wrapper: Wrapper,
 }
 
 type MDXProps = {
   children: string
-  tableOfContents: TableOfContentsData
 }
 
-const MDX: React.FC<MDXProps> = ({ children, tableOfContents }) => (
+const MDX: React.FC<MDXProps> = ({ children }) => (
   <MDXProvider components={components}>
-    <MDXRenderer tableOfContents={tableOfContents}>{children}</MDXRenderer>
+    <MDXRenderer>{children}</MDXRenderer>
   </MDXProvider>
 )
 
