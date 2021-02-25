@@ -13,16 +13,6 @@
 }
 
 @layer components {
-  a.active {
-    @apply bg-indigo-600 text-white;
-
-    border-radius: 9999px;
-  }
-
-  a.active:hover {
-    text-decoration: none;
-  }
-
   ul.footer-links > li::after {
     @apply mx-2;
     content: "-";
