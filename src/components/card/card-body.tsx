@@ -1,5 +1,6 @@
 import React from "react"
 import Image, { FluidObject } from "gatsby-image"
+import CardBodyText from "./card-body-text"
 
 export type CardBodyProps = {
   align: "center" | "left"
@@ -62,10 +63,10 @@ const CardBody: React.FC<CardBodyProps> = ({
               className="sm:hidden flex-none w-2/5 mr-4 border"
               fluid={image.childImageSharp.fluid}
             />
-            <div className="text-lg">{children}</div>
+            <CardBodyText>{children}</CardBodyText>
           </div>
         ) : (
-          <div className="text-lg">{children}</div>
+          <CardBodyText>{children}</CardBodyText>
         )}
       </div>
       {footer && (

@@ -13,19 +13,6 @@
 }
 
 @layer components {
-  .item-heading {
-    @apply text-2xl font-semibold;
-    position: relative;
-  }
-
-  a .item-heading {
-    @apply text-indigo-600 transition-colors;
-  }
-
-  a:hover .item-heading {
-    @apply text-black;
-  }
-
   a.active {
     @apply bg-indigo-600 text-white;
 

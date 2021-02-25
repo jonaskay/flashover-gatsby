@@ -41,7 +41,13 @@ const Card: CardComponent = ({ children, columns, theme, to }) => {
   const className = `relative col-span-1 ${columnSpan} ${backgroundColor} border ${borderColor} ${shadow}`
 
   return to ? (
-    <Link className={className} to={to}>
+    <Link
+      className={[
+        className,
+        "text-indigo-600 hover:text-gray-900 transition-colors",
+      ].join(" ")}
+      to={to}
+    >
       {children}
     </Link>
   ) : (
