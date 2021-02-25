@@ -1,8 +1,8 @@
 import React from "react"
 
-import Container from "./container"
+import Container from "../container"
+import GitHubLink from "../github-link"
 import FooterLink from "./footer-link"
-import GitHubLink from "./github-link"
 
 const Footer: React.FC = () => {
   return (
@@ -14,7 +14,7 @@ const Footer: React.FC = () => {
         </a>
         <div className="my-8 text-gray-700">
           Other stuff by me:
-          <ul className="footer-links">
+          <ul>
             <FooterLink href="https://www.tastyvar.com/">
               tastyvar.com
             </FooterLink>

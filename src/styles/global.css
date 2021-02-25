@@ -13,15 +13,6 @@
 }
 
 @layer components {
-  ul.footer-links > li::after {
-    @apply mx-2;
-    content: "-";
-  }
-
-  ul.footer-links > li:last-child::after {
-    content: none;
-  }
-
   ol.search-hits > li::marker {
     @apply text-xl text-gray-500;
   }
