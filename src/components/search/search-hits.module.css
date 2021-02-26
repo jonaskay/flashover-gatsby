@@ -1,0 +1,5 @@
+@layer components {
+  .item::marker {
+    @apply text-xl text-gray-500;
+  }
+}

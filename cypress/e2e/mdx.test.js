@@ -22,13 +22,9 @@ describe("MDX tests", () => {
 
     it("renders headings with links", () => {
       cy.get("h2")
-        .contains("What makes a great negotiator?")
+        .contains("Intro")
         .within(() => {
-          cy.get("a").should(
-            "have.attr",
-            "href",
-            "#what-makes-a-great-negotiator"
-          )
+          cy.get("a").should("have.attr", "href", "#intro")
         })
     })
   })

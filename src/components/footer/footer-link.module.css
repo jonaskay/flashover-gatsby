@@ -1,0 +1,10 @@
+@layer components {
+  .wrapper::after {
+    @apply mx-2;
+    content: "-";
+  }
+
+  .wrapper:last-child::after {
+    content: none;
+  }
+}

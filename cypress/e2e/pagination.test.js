@@ -9,8 +9,8 @@ describe("Pagination tests", () => {
     cy.get("main")
       .findByLabelText("page navigation")
       .within(() => {
-        cy.get("a").findByText("1").should("have.class", "active")
-        cy.get("a").findByText("2").should("not.have.class", "active")
+        cy.get("a").findByText("1").should("have.class", "text-white")
+        cy.get("a").findByText("2").should("not.have.class", "text-white")
         cy.get("a").findByTitle("Next").parent().click()
       })
 
@@ -19,8 +19,8 @@ describe("Pagination tests", () => {
     cy.get("main")
       .findByLabelText("page navigation")
       .within(() => {
-        cy.get("a").findByText("1").should("not.have.class", "active")
-        cy.get("a").findByText("2").should("have.class", "active")
+        cy.get("a").findByText("1").should("not.have.class", "text-white")
+        cy.get("a").findByText("2").should("have.class", "text-white")
         cy.get("a").findByTitle("Previous").parent().click()
       })
 
@@ -29,8 +29,8 @@ describe("Pagination tests", () => {
     cy.get("main")
       .findByLabelText("page navigation")
       .within(() => {
-        cy.get("a").findByText("1").should("have.class", "active")
-        cy.get("a").findByText("2").should("not.have.class", "active")
+        cy.get("a").findByText("1").should("have.class", "text-white")
+        cy.get("a").findByText("2").should("not.have.class", "text-white")
       })
   })
 })

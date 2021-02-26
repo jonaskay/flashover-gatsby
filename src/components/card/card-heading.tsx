@@ -6,7 +6,11 @@ export type CardHeadingProps = {
 }
 
 const CardHeading: React.FC<CardHeadingProps> = ({ children, className }) => (
-  <h2 className={`item-heading ${className ? className : ""}`}>{children}</h2>
+  <h2
+    className={`relative text-2xl font-semibold ${className ? className : ""}`}
+  >
+    {children}
+  </h2>
 )
 
 export default CardHeading
