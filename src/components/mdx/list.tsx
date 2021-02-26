@@ -1,15 +1,21 @@
 import React from "react"
 
-type ListComponent = React.FC<any> & { Item: React.FC<any> }
-
 const ListItem: React.FC<any> = props => (
   <li className="my-2 text-lg" {...props} />
 )
 
-const List: ListComponent = props => (
+const UnorderedList: React.FC<any> = props => (
   <ul className="list-disc ml-8" {...props} />
 )
 
-List.Item = ListItem
+const OrderedList: React.FC<any> = props => (
+  <ol className="list-decimal ml-8" {...props} />
+)
+
+const List = {
+  Item: ListItem,
+  Unordered: UnorderedList,
+  Ordered: OrderedList,
+}
 
 export default List
