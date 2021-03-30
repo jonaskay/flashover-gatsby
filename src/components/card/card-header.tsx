@@ -17,7 +17,7 @@ const CardHeader: React.FC<CardHeaderProps> = ({
   label,
   meta,
 }) => (
-  <div className={featured && "text-center sm:text-left"}>
+  <div className={featured ? "text-center sm:text-left" : ""}>
     {label}
     <CardHeading className={!divider && "mb-4"}>{heading}</CardHeading>
     {meta}

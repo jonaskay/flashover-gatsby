@@ -4,8 +4,12 @@ import Card from "./card/card"
 import NewsLetterForm from "./newsletter-form"
 import RSSLink from "./rss-link"
 
-const CTACard: React.FC = () => (
-  <Card theme="primary">
+type SubscribeCardProps = {
+  columns: 1 | 2
+}
+
+const SubscribeCard: React.FC<SubscribeCardProps> = ({ columns = 1 }) => (
+  <Card columns={columns} theme="primary">
     <Card.Body
       align="center"
       justify="center"
@@ -21,4 +25,4 @@ const CTACard: React.FC = () => (
   </Card>
 )
 
-export default CTACard
+export default SubscribeCard

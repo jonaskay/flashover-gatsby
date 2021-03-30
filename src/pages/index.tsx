@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 import Container from "../components/container"
 import BlogPostCard from "../components/blog-post-card"
 import PageCard from "../components/page-card"
-import CTACard from "../components/cta-card"
+import SubscribeCard from "../components/subscribe-card"
 import CTAText from "../components/cta-text"
 import Label from "../components/label/label"
 import routes from "../common/routes"
@@ -49,7 +49,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
     site: {
       siteMetadata: { title, description },
     },
-    allFile: { edges },
+    allFile: { edges: posts },
   } = data
 
   return (
@@ -66,7 +66,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
     >
       <SEO />
       <Container className="max-w-3xl my-8 grid gap-6 grid-cols-1 md:grid-cols-2">
-        {edges.map(({ node }, index) => {
+        {posts.map(({ node }, index) => {
           const mdx = node.childMdx
           const label = index === 0 && <Label text="Latest" />
 
@@ -88,7 +88,7 @@ const IndexPage: React.FC<PageProps<DataProps>> = ({ data }) => {
           }}
           footer={<CTAText>Go to archive</CTAText>}
         />
-        <CTACard />
+        <SubscribeCard columns={posts.length % 2 === 0 ? 2 : 1} />
       </Container>
     </LandingLayout>
   )
