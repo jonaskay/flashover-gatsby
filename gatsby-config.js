@@ -54,7 +54,8 @@ module.exports = {
               allFile(
                 filter: {
                   sourceInstanceName: { eq: "blog" }
-                  internal: { mediaType: { eq: "text/mdx" } } }
+                  internal: { mediaType: { eq: "text/mdx" } }
+                }
                 sort: { fields: [name], order: DESC }
                 limit: 10
                 ) {
